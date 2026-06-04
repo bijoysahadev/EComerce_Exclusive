@@ -7,9 +7,10 @@ import ListItem from '../Components/ListItem';
 import { IoMdSearch } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa6";
 import { BsCart3 } from "react-icons/bs";
+import { Link } from 'react-router-dom';
 const Navbar = () => {
   return (
-    <nav className='pt-10 pb-4'>
+    <nav className='pt-10 pb-4 border-[rgba(0,0,0,0.10)] border'>
         <Container>
            <Flex >
              <div className='w-3/12 ' >
@@ -17,10 +18,10 @@ const Navbar = () => {
              </div>
             <div className='w-5/12 '> 
             <ul className='flex gap-x-12 cursor-pointer before relative '>
-            <ListItem text={`Home`}  />
-            <ListItem text={`Contact`}  />
-            <ListItem text={`About`}  />
-            <ListItem text={`Sign Up`} />
+             <Link to='/Home'><ListItem text={`Home`}  /></Link>
+            <Link to='/Contact'><ListItem text={`Contact`}  /></Link>
+            <Link to='/About'>   <ListItem text={`About`}  /></Link>
+             <Link to='/SignUp'> <ListItem text={`SignUp`} /></Link>
             </ul>
                 </div>
             <div  className='w-4/12  pl-10'> 
