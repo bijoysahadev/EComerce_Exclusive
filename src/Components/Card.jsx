@@ -9,7 +9,7 @@ const Card = ({image,tittle,badge,saleprice,regularprice,className}) => {
   return (
     <div className={`w-[270px]  group ${className}`}>
       <Flex className="relative  overflow-hidden items-center w-[250px] w-full justify-center rounded-[4px]   bg-[#F5F5F5] ">
-     <div className="flex items-center justify-center w-full h-[250px] bg-red">
+     <div className="flex items-center justify-center w-full h-[250px] ">
            <Image src={image} alt="prodecut1" />
         <p className="  cursor-pointer  absolute top-3 left-1 bg-[#DB4444]  py-1 px-3 rotate-[4px] font-poppins text-xs text-white font-normal ">
         {badge}
