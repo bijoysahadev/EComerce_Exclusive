@@ -5,6 +5,7 @@ import SubHeading from '../Components/SubHeading'
 import Container from '../Components/Container'
 import Today from '../layouts/Today'
 
+
 const Home = () => {
   return (
 
@@ -13,6 +14,7 @@ const Home = () => {
       <Banner/>
    <Today/>
    </Container>
+
    </>
   )
   

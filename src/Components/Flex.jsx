@@ -1,5 +1,4 @@
 import React from 'react'
-import { children } from 'react'
 
 const Flex = ({children,className}) => {
   return (
@@ -10,4 +9,3 @@ const Flex = ({children,className}) => {
 }
 
 export default Flex
-{}{children}

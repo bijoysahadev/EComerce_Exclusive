@@ -1,15 +1,21 @@
 import React from 'react'
-import NewsPart from '../layouts/NewsPart'
-import Navbar from '../layouts/Navbar'
-import Footer from '../layouts/Footer'
-import Card from '../Components/Card'
+
 import Container from '../Components/Container'
 import Product1 from "../assets/product1.png";
 import banner from "../assets/banner.jpg";
 import Flex from '../Components/Flex'
 import Image from '../Components/Image'
-import CategoryList from '../Components/CategoryList'
+import CategoryList from '../Components/CategoryList';
+
+// 
+import Slider from 'react-slick';
+// 
+
+// 
+const SliderComponent = Slider.default || Slider;
+// 
 const Banner = () => {
+const settings = { dots: true, infinite: true };
   return (
      <section  className='pt-10  pb-[140px]' >
     <Container>
@@ -27,15 +33,21 @@ const Banner = () => {
        <CategoryList  text={`Baby’s & Toys`} type={`false`}/>
        <CategoryList  text={`Groceries & Pets`} type={`false`}/>
        <CategoryList  text={`Health & Beauty`} type={`false`}/>
+       <CategoryList  text={`bijoy and ajoy`} type={`false`}/>
        </ul>
         
         </div>
-        <div className='w-9/12 '>
-   <Image src={banner} />
-        </div>
+ <div className='w-9/12'>
+    
+    <SliderComponent {...settings}>
+      <div><h3>1</h3></div>
+      <div><h3>2</h3></div>
+    </SliderComponent>
+
+   
+</div>
       </Flex>
-     
-     
+      
    
     </Container>
   </section>
