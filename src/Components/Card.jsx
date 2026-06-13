@@ -7,7 +7,7 @@ import { LuEye } from "react-icons/lu";
 import { IoMdStar } from "react-icons/io";
 const Card = ({image,tittle,badge,saleprice,regularprice,className}) => {
   return (
-    <div className={`w-[270px]  group ${className}`}>
+    <div className={`w-[270px]  group ${className} `}>
       <Flex className="relative  overflow-hidden items-center w-[250px] w-full justify-center rounded-[4px]   bg-[#F5F5F5] ">
      <div className="flex items-center justify-center w-full h-[250px] ">
            <Image src={image} alt="prodecut1" />

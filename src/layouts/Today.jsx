@@ -10,18 +10,61 @@ import Product4 from "../assets/product4.png";
 import Button from '../Components/Button'
 import Image from '../Components/Image'
 import Flex from '../Components/Flex'
+import NextArrow from '../Components/NextArrow'
+import PreviousArrow from '../Components/PreviousArrow'
+import Slider from "react-slick";
+
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+// 
+const SliderComponent = Slider.default || Slider;
+
+// 
+
 const Today = () => {
+
+// 
+
+const settings = {
+    dots: false,
+    Arrows: true ,
+    infinite: false,
+    slidesToShow: 5,
+    slidesToScroll: 1,
+    nextArrow: <NextArrow />,
+    prevArrow: <PreviousArrow/>
+  };
+
+// 
   return (
     <section className=' py-[200px ]' >
         <Container>
           <div className='border-b border-black   pb-[60px]'   >
               <SubHeading  className2={`gap-x-4`} tittle={`Today’s`}/>
             <Heading text={`Flash Sales`} className={`pt-6 pb-8`}/>
-           <Flex className={`justify-between`} >
-             <Card  image={Product1}   tittle={`HAVIT HV-G92 Gamepad`}  badge={`-40%`} regularprice={`160`} saleprice={`120`} />
-            <Card  image={Product2}   tittle={`AK-900 Wired Keyboard`}  badge={`-35%`} regularprice={`160`} saleprice={`960`} />
-            <Card  image={Product3}   tittle={`IPS LCD Gaming Monitor`}  badge={`-30%`} regularprice={`400`} saleprice={`370`} />
-            <Card  image={Product4}   tittle={`S-Series Comfort Chair `}  badge={`-25%`} regularprice={`400`} saleprice={`375`} />
+           <Flex className={`justify-between  gap-x-4`} >
+          <div className="slider-container w-full   ">
+      <SliderComponent {...settings}>
+        <div className='px-4' > 
+        <Card  image={Product1}    tittle={`HAVIT HV-G92 Gamepad`}  badge={`-40%`} regularprice={`160`} saleprice={`120`} />
+        </div>
+        <div className='px-4' >
+         <Card  image={Product2}   tittle={`AK-900 Wired Keyboard`}  badge={`-35%`} regularprice={`160`} saleprice={`960`} />
+        </div>
+        <div className='px-4' >
+        <Card  image={Product3}   tittle={`IPS LCD Gaming Monitor`}  badge={`-30%`} regularprice={`400`} saleprice={`370`} />
+        </div>
+        <div  className='px-4' >
+       <Card  image={Product4}   tittle={`S-Series Comfort Chair `}  badge={`-25%`} regularprice={`400`} saleprice={`375`} />
+        </div>
+        <div>
+          <h3>5</h3>
+        </div>
+        <div>
+          <h3>6</h3>
+        </div>
+      </SliderComponent>
+    </div>
            </Flex>
            <div className='text-center pt-[60px]'>
              <Button text={`View All Products`}/>
@@ -30,7 +73,18 @@ const Today = () => {
           
         </Container>
 
+
+{/*    
+           
+          
+            */}
+
+
+
     </section>
+
+
+
   )
 }
 

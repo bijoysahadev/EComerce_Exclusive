@@ -14,6 +14,7 @@ import NewsPart from "./layouts/NewsPart";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Error from "./pages/Error";
+
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
