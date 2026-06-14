@@ -57,22 +57,22 @@ const settings = { dots: true, infinite: true,
     
     <SliderComponent {...settings}>
  <div>
-    <img src={banner} alt="iPhone Banner" className="w-full h-[344px] block" />
+    <img src={banner} alt="iPhone Banner" className="w-full h-[344px]   " />
   </div>
   <div>
-    <img src={banner2} alt=" Banner" className="w-full h-[344px] block" />
+    <img src={banner2} alt=" Banner" className="w-full h-[344px] " />
   </div>
   <div>
-    <img src={banner3} alt=" Banner" className="w-full h-[344px] block" />
+    <img src={banner3} alt=" Banner" className="w-full h-[344px] " />
   </div>
   <div>
-    <img src={banner4} alt=" Banner" className="w-full h-[344px] block" />
+    <img src={banner4} alt=" Banner" className="w-full h-[344px] " />
   </div>
   <div>
-    <img src={banner5} alt=" Banner" className="w-full h-[344px] block" />
+    <img src={banner5} alt=" Banner" className="w-full h-[344px] " />
   </div>
   <div>
-    <img src={banner6} alt=" Banner" className="w-full h-[344px] block" />
+    <img src={banner6} alt=" Banner" className="w-full h-[344px] " />
   </div>
 
     </SliderComponent>

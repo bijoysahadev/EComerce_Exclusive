@@ -1,0 +1,17 @@
+/* Add padding to the inner wrapper of every slide item */
+.slick-slide > div {
+  margin: 0 10px !important; 
+  padding: 0 12px !important;
+ /* Adjust this value to increase or decrease the gap */
+}
+
+/* Compensate for the extra outer margins so the track stays aligned */
+.slick-list {
+  margin: 0 -10px !important ;
+}
+.slick-slide {
+    padding:  0 80px !important;
+    box-sizing: border-box;
+    display: flex !important ; 
+    justify-content: space-between !important;
+}
