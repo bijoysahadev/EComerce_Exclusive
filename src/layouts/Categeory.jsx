@@ -30,7 +30,7 @@ const settings = {
     dots: false,
     Arrows: true ,
     infinite: true,
-    slidesToShow: 4,
+    slidesToShow: 6,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
     prevArrow: <PreviousArrow/>
@@ -46,7 +46,8 @@ const settings = {
     <Container>
       <SubHeading tittle={`Categories`} className2={`gap-x-4`}  />
       <Heading text={`Browse By Category`} className={`pt-7 pb-13`} />
- <SliderComponent {...settings}>
+   <div className='border-b-2 b pb-50 border-[rgba(0,0,0,0.10)]' >
+     <SliderComponent {...settings}>
    <div>
       <CategeoryBox text={`Phones`} icon={<FaMobileScreenButton  />}  />
    </div>
@@ -66,7 +67,14 @@ const settings = {
     <CategeoryBox text={`Gaming`} icon={<RiGamepadLine />}  />
    </div>
      
+   <div>
+    <CategeoryBox text={`Gaming`} icon={<RiGamepadLine />}  />
+   </div>
+       <div>
+      <CategeoryBox text={`Phones`} icon={<FaMobileScreenButton  />}  />
+   </div>
     </SliderComponent>
+   </div>
 
 
    

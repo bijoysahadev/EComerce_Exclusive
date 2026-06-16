@@ -5,6 +5,8 @@ import SubHeading from '../Components/SubHeading'
 import Container from '../Components/Container'
 import Today from '../layouts/Today'
 import Categeory from '../layouts/Categeory'
+import BestProduct from '../Components/BestProduct'
+import PromotionPart from './PromotionPart'
 
 
 const Home = () => {
@@ -15,6 +17,8 @@ const Home = () => {
       <Banner/>
    <Today/>
    <Categeory/>
+   <BestProduct/>
+   <PromotionPart/>
    </Container>
     
    </>
