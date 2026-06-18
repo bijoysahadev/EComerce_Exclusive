@@ -8,6 +8,30 @@
     --font-inter :  "Inter", sans-serif;
     --color-red : #DB4444 ;
 }  
-
-/* 👇 YOU CAN PASTE YOUR CUSTOM SLICK-SLIDER CSS RIGHT HERE AT THE BOTTOM */
-/* testimonial slider section home page */
+.one {
+    display: grid;
+   gap: 30px;
+   grid-template-columns: auto auto auto auto;
+   grid-template-rows: repeat(2,284px);
+}
+.two {
+   
+background-color: red;
+border-radius: 4px;
+}
+.two:nth-child(1) {
+   grid-column-start: 1;
+   grid-column-end: 3;
+}
+.two:nth-child(2) {
+    grid-column-start: 3;
+    grid-column-end: 5;
+}
+.two:nth-child(1) {
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+.one .two img {
+    width: 100%;
+    height: 100%;
+}

@@ -6,6 +6,9 @@ import Container from '../Components/Container'
 import Today from '../layouts/Today'
 import Categeory from '../layouts/Categeory'
 import BestProduct from '../Components/BestProduct'
+import Promotion from '../Components/Promotion'
+import ExploreProduct from '../layouts/ExploreProduct'
+import NewArrival from '../layouts/NewArrival'
 
 
 
@@ -18,9 +21,10 @@ const Home = () => {
    <Today/>
    <Categeory/>
    <BestProduct/>
-
+    <Promotion/>
    </Container>
-    
+    <ExploreProduct/>
+    <NewArrival/>
    </>
   )
   
