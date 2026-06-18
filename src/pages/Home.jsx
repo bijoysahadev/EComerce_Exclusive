@@ -9,6 +9,7 @@ import BestProduct from '../Components/BestProduct'
 import Promotion from '../Components/Promotion'
 import ExploreProduct from '../layouts/ExploreProduct'
 import NewArrival from '../layouts/NewArrival'
+import Support from '../Components/SupportComponent'
 
 
 
@@ -25,6 +26,7 @@ const Home = () => {
    </Container>
     <ExploreProduct/>
     <NewArrival/>
+     <Support/>
    </>
   )
   

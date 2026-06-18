@@ -18,7 +18,7 @@ const Navbar = () => {
              </div>
             <div className='w-5/12 '> 
             <ul className='flex gap-x-12 cursor-pointer before relative '>
-             <Link to='/Home'><ListItem text={`Home`}  /></Link>
+             <Link to='/'><ListItem text={`Home`}  /></Link>
             <Link to='/Contact'><ListItem text={`Contact`}  /></Link>
             <Link to='/About'>   <ListItem text={`About`}  /></Link>
              <Link to='/SignUp'> <ListItem text={`SignUp`} /></Link>
