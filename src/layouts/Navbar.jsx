@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Container from '../Components/Container'
 import Flex from '../Components/Flex'
 import Image from '../Components/Image'
@@ -8,7 +8,12 @@ import { IoMdSearch } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa6";
 import { BsCart3 } from "react-icons/bs";
 import { Link } from 'react-router-dom';
+import { FaUser } from "react-icons/fa";
 const Navbar = () => {
+  let [dropdown,setDropdown]=useState(false)
+  let handleUser=()=> {
+    setDropdown(!dropdown)
+  }
   return (
     <nav className='pt-10 pb-4 border-[rgba(0,0,0,0.10)] border'>
         <Container>
@@ -24,7 +29,7 @@ const Navbar = () => {
              <Link to='/SignUp'> <ListItem text={`SignUp`} /></Link>
             </ul>
                 </div>
-            <div  className='w-4/12  pl-10'> 
+            <div  className='w-4/12  pl-10 relative'> 
             <Flex className={`items-center justify-between `}>
                  <div className='relative w-[243px] bg-white'>
              <input className='py-1 pl-4 pr-7 w-full placeholder:text-[12px] font-poppins  font-regular' type="text" placeholder='What are you looking for?  ' />
@@ -32,6 +37,20 @@ const Navbar = () => {
            </div>
            <FaRegHeart className='text-lx'/>
            <BsCart3  className='text-lx' />
+          <div   onClick={handleUser} className='w-[25px] h-[25px] rounded-full flex justify-center items-center bg-red p-2 ' >
+             <FaUser  className='text-white ' />
+          </div>
+         {
+           dropdown &&   <div className=' z-100 w-[200px] py-[20px] absolute top-full right-5 bg-red-500 ' >
+            <ul>
+              <li>Home</li>
+              <li>Home</li>
+              <li>Home</li>
+              <li>Home</li>
+              <li>Home</li>
+            </ul>
+          </div>
+         }
             </Flex>
             </div>
            </Flex>
