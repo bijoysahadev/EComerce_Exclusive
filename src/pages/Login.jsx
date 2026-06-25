@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../layouts/Navbar'
 import Footer from '../layouts/Footer'
 import NewsPart from '../layouts/NewsPart'
@@ -9,7 +9,40 @@ import Flex from '../Components/Flex'
 import Heading from '../Components/Heading'
 import { Form } from 'react-router-dom'
 import Button from '../Components/Button'
+import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+
+import { ToastContainer, toast } from 'react-toastify';
 const Login = () => {
+  const auth = getAuth();
+  let [email,setEmail]=useState("")
+  let [password,setPassword]=useState("")
+  let handleEmail = (e)=> {
+    setEmail(e.target.value);
+    
+  }
+  let handlePassword = (e)=> {
+    setPassword(e.target.value);
+    
+  }
+  let handleLogIn = ()=> {
+    // console.log("loggedin");
+    signInWithEmailAndPassword(auth, email, password)
+  .then((userCredential) => {
+    toast.success("Your are logged in")
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode);
+    console.log(errorMessage);
+     if (errorCode.includes("auth/invalid-credential")) {
+      toast.error("Enter A Valid Email Please")
+    }
+   
+  });
+   
+
+  }
   return (
     <>
 
@@ -21,11 +54,13 @@ const Login = () => {
               <Heading text='Log in to Exclusive' className={`font-medium`} />
               <p className='font-poppins text-[16px]   font-normal text-[rgb(0,0,0)] pt-5 pb-[40px]' > Enter your details below</p>
               <Form>
-                <input className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)]' type="text" placeholder='Email or Phone Number' />
-                <input className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] pt-16' type="text" placeholder='Password' />
+                <input  onChange={handleEmail} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)]' type="text" placeholder='Email or Phone Number' />
+                <input   onChange={handlePassword} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] pt-16' type="text" placeholder='Password' />
               </Form>
               <Flex className={`items-center justify-around pt-[50px]`}>
-                <Button text={`Log In`} />
+                <div onClick={handleLogIn} >
+                  <Button   text={`Log In`}   />
+                </div>
                 <p className='text-poppins text-red  text-4 font-normal' >Forget Password?</p>
               </Flex>
             </div>
@@ -33,6 +68,19 @@ const Login = () => {
           </Flex>
 
         </Container>
+         <ToastContainer
+                  position="top-center"
+                  autoClose={5000}
+                  hideProgressBar={false}
+                  newestOnTop={false}
+                  closeOnClick={false}
+                  rtl={false}
+                  pauseOnFocusLoss
+                  draggable
+                  pauseOnHover
+                  theme="light"
+        
+                />
       </section>
 
     </>
