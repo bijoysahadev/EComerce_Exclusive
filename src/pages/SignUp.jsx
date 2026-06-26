@@ -68,24 +68,33 @@ const SignUp = () => {
               <Image src={Login2} />
             </div>
             <div>
-              <Heading text={`Create an account`} className={`!text-[36px]`} />
+             <div className='w-[370px] min-w-[370px]' >
+               <Heading text={`Create an account`} className={`!text-[36px] `} />
+             </div>
               <p className=' py-5 font-poppins !font-normal  !text-6  !eading-6' >Enter your details below</p>
-              <Form>
+              <Form className='flex flex-col gap-y-[40px]' >
                 <input onChange={handleName} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)]' type="text" placeholder='Name' />
-                <input onChange={handleEmail} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] pt-16' type="text" placeholder='Email or Phone Number' />
-                <input onChange={handlePassword} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] pt-16' type="text" placeholder='Password' />
+                <input onChange={handleEmail} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] ' type="text" placeholder='Email or Phone Number' />
+               
+               
+                    <input onChange={handlePassword} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] ' type="text" placeholder='Password' />
+                
+             
+                    
+             
+             
 
               </Form>
-              <div className='pt-[40px] pb-[34px]  ' onClick={handleSendUp} >
-                <Button text={`Create Account`} className={`py-4 px-[122px]`} />
+              <div className='mt-10 flex flex-col gap-y-4 ' onClick={handleSendUp} >
+                <Button text={`Create Account`} className={`w-full py-4 text-center`} />
 
-                <button className=' cursor-pointer px-[96px]  py-4 mt-5 flex items-center justify-around gap-x-4 border border-[rgba(0,0,0,0.40)] ' >
+                <button className='w-full cursor-pointer py-4 flex items-center justify-center gap-x-4 border border-[rgba(0,0,0,0.40)] rounded-md transition hover:bg-gray-50'  >
                   <FcGoogle />
-                  <p>Sign up with Google</p>
+                  <p className='text-4 font-poppins font-normal leading-6' >Sign up with Google</p>
                 </button>
 
               </div>
-              <Flex className={`items-center justify-center gap-x-4`} >
+              <Flex className={`items-center justify-center gap-x-2 mt-8`} >
                 <p className='text-poppins font-normal  text-[rgba(0,0,0,1)] text-4 ' >Already have account?</p>
                  <Link to='/Login' >
                  <a href="" className='text-poppins font-medium  text-4  text-black underline' >Log in</a>
