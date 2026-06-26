@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom'
 import { FaRegEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 const SignUp = () => {
+  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
   const auth = getAuth();
   let [name, setName] = useState("")
   let [email, setEmail] = useState("")
@@ -29,24 +30,36 @@ const SignUp = () => {
 
        if (!name ) {
         setNameError("Enter Your Name Please");
+
         
+       }
+       if (!email ){
+        setEmailError("Please Enter Your Email or Phone Number")
+       }
+     
+       }
+       if (!password) {
+        setPasswordError("Please Enter Your Password")
        }
    
 
-  }
+  
   let  handleEye= ()=> {
     setEye(!eye)
    }
   let handleName = (e) => {
     setName(e.target.value);
+    setNameError("")
 
   }
   let handleEmail = (e) => {
     setEmail(e.target.value);
+    setEmailError("")
 
   }
   let handlePassword = (e) => {
     setPassword(e.target.value);
+    setPasswordError("")
 
   }
   return (
@@ -73,10 +86,15 @@ const SignUp = () => {
                 }
                
                 <input onChange={handleEmail} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] ' type="text" placeholder='Email or Phone Number' />
-               
+                {
+                  emailerror &&    <p className='bg-red-500 text-white rounded-md py-2 px-2 mt-2 ' > {emailerror}</p>
+                }
                
                   <div className='relative w-full' >
                       <input onChange={handlePassword} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] ' type={eye? "password" : "text"} placeholder='Password' />
+                     {
+                      passworderror &&    <p className='bg-red-500 text-white  py-2 px-2 mt-2  rounded-md' >{passworderror}</p>
+                     }
                       <div  onClick={handleEye} className='absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer text-gray-500' >
                         {
                           eye   ?  <FaRegEyeSlash />   : <FaRegEye />
