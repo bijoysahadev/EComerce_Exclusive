@@ -10,11 +10,14 @@ import { FcGoogle } from "react-icons/fc";
 import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom'
+import { FaRegEyeSlash } from "react-icons/fa";
+import { FaRegEye } from "react-icons/fa";
 const SignUp = () => {
   const auth = getAuth();
   let [name, setName] = useState("")
   let [email, setEmail] = useState("")
   let [password, setPassword] = useState("")
+  let [eye,setEye]=useState(false)
   let handleSendUp = () => {
     // console.log(name);
     // console.log(email);
@@ -44,9 +47,12 @@ const SignUp = () => {
 
 
      
-
+   
 
   }
+  let  handleEye= ()=> {
+    setEye(!eye)
+   }
   let handleName = (e) => {
     setName(e.target.value);
 
@@ -77,7 +83,17 @@ const SignUp = () => {
                 <input onChange={handleEmail} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] ' type="text" placeholder='Email or Phone Number' />
                
                
-                    <input onChange={handlePassword} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] ' type="text" placeholder='Password' />
+                  <div className='realtive' >
+                      <input onChange={handlePassword} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] ' type={eye? "password" : "text"} placeholder='Password' />
+                      <div  onClick={handleEye} className='absolute top-[545px]    right-[366px]' >
+                        {
+                          eye   ?  <FaRegEyeSlash />   : <FaRegEye />
+                        }
+                        
+
+                          
+                      </div>
+                  </div>
                 
              
                     
