@@ -17,12 +17,79 @@ const SignUp = () => {
   let [name, setName] = useState("")
   let [email, setEmail] = useState("")
   let [password, setPassword] = useState("")
+  let [nameerror,setNameError]=useState("")
+  let [emailerror,setEmailError]=useState("")
+  let [passworderror,setPasswordError]=useState()
   let [eye,setEye]=useState(false)
   let handleSendUp = () => {
     // console.log(name);
     // console.log(email);
     // console.log(password);
-    createUserWithEmailAndPassword(auth, email, password)
+   
+
+       if (!name ) {
+        setNameError("Enter Your Name Please");
+        
+       }
+   
+
+  }
+  let  handleEye= ()=> {
+    setEye(!eye)
+   }
+  let handleName = (e) => {
+    setName(e.target.value);
+
+  }
+  let handleEmail = (e) => {
+    setEmail(e.target.value);
+
+  }
+  let handlePassword = (e) => {
+    setPassword(e.target.value);
+
+  }
+  return (
+
+
+
+
+    <div>
+      <section className='py-[140px]' >
+        <Container>
+          <Flex className={`gap-x-[130px] items-center justify-around `} >
+            <div>
+              <Image src={Login2} />
+            </div>
+            <div>
+             <div className='w-[370px] min-w-[370px]' >
+               <Heading text={`Create an account`} className={`!text-[36px] `} />
+             </div>
+              <p className=' py-5 font-poppins !font-normal  !text-6  !eading-6' >Enter your details below</p>
+              <Form className='flex flex-col gap-y-[40px]' >
+                <input onChange={handleName} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)]' type="text" placeholder='Name' />
+                {
+                  nameerror &&  <p className= ' mt-2 px-2 bg-red-500 text-white py-2  rounded-md ' >{nameerror}</p>
+                }
+               
+                <input onChange={handleEmail} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] ' type="text" placeholder='Email or Phone Number' />
+               
+               
+                  <div className='relative w-full' >
+                      <input onChange={handlePassword} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] ' type={eye? "password" : "text"} placeholder='Password' />
+                      <div  onClick={handleEye} className='absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer text-gray-500' >
+                        {
+                          eye   ?  <FaRegEyeSlash />   : <FaRegEye />
+                        }
+                        
+
+                          
+                      </div>
+                  </div>
+                
+             
+                    {/* <div>
+                       createUserWithEmailAndPassword(auth, email, password)
       .then((userCredential) => {
         toast.success("Regestation done!! ");
 
@@ -45,58 +112,7 @@ const SignUp = () => {
       });
 
 
-
-     
-   
-
-  }
-  let  handleEye= ()=> {
-    setEye(!eye)
-   }
-  let handleName = (e) => {
-    setName(e.target.value);
-
-  }
-  let handleEmail = (e) => {
-    setEmail(e.target.value);
-
-  }
-  let handlePassword = (e) => {
-    setPassword(e.target.value);
-
-  }
-  return (
-    <div>
-      <section className='py-[140px]' >
-        <Container>
-          <Flex className={`gap-x-[130px] items-center justify-around `} >
-            <div>
-              <Image src={Login2} />
-            </div>
-            <div>
-             <div className='w-[370px] min-w-[370px]' >
-               <Heading text={`Create an account`} className={`!text-[36px] `} />
-             </div>
-              <p className=' py-5 font-poppins !font-normal  !text-6  !eading-6' >Enter your details below</p>
-              <Form className='flex flex-col gap-y-[40px]' >
-                <input onChange={handleName} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)]' type="text" placeholder='Name' />
-                <input onChange={handleEmail} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] ' type="text" placeholder='Email or Phone Number' />
-               
-               
-                  <div className='realtive' >
-                      <input onChange={handlePassword} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] ' type={eye? "password" : "text"} placeholder='Password' />
-                      <div  onClick={handleEye} className='absolute top-[545px]    right-[366px]' >
-                        {
-                          eye   ?  <FaRegEyeSlash />   : <FaRegEye />
-                        }
-                        
-
-                          
-                      </div>
-                  </div>
-                
-             
-                    
+                    </div> */}
              
              
 

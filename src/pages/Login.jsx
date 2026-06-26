@@ -10,15 +10,20 @@ import Heading from '../Components/Heading'
 import { Form } from 'react-router-dom'
 import Button from '../Components/Button'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
-
+import { FaRegEyeSlash } from "react-icons/fa";
+import { FaRegEye } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
 const Login = () => {
   const auth = getAuth();
   let [email,setEmail]=useState("")
   let [password,setPassword]=useState("")
+  let [eye,setEye]=useState(false)
   let handleEmail = (e)=> {
     setEmail(e.target.value);
     
+  }
+  let handleEye = ()=> {
+    setEye(!eye)
   }
   let handlePassword = (e)=> {
     setPassword(e.target.value);
@@ -51,11 +56,23 @@ const Login = () => {
           <Flex className={` gap-x-[130px] justify-evenly items-center`} >
             <div>    <Image src={Login1} /></div>
             <div>
-              <Heading text='Log in to Exclusive' className={`font-medium`} />
+             <div className='w-[370px] min-w-[370px]' >
+                  <Heading text='Log in to Exclusive' className={`font-medium`} />
+             </div>
               <p className='font-poppins text-[16px]   font-normal text-[rgb(0,0,0)] pt-5 pb-[40px]' > Enter your details below</p>
               <Form>
                 <input  onChange={handleEmail} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)]' type="text" placeholder='Email or Phone Number' />
-                <input   onChange={handlePassword} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] pt-16' type="text" placeholder='Password' />
+                 <p className='bg-red-500 text-white' >Please Enter Your Name</p>
+                <div className='relative w-full' >
+                     <input   onChange={handlePassword} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] pt-16' type={eye ? "text" : "password"} placeholder='Password' />
+                     <div  onClick={handleEye} className='absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer text-gray-500' >
+                     
+                     
+                        {
+                          eye ?  <FaRegEyeSlash /> : <FaRegEye />
+                        }
+                     </div>
+                </div>
               </Form>
               <Flex className={`items-center justify-around pt-[50px]`}>
                 <div onClick={handleLogIn} >
