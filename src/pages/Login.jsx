@@ -13,6 +13,9 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 import { ToastContainer, toast } from 'react-toastify';
+
+import {  sendPasswordResetEmail } from "firebase/auth";
+
 const Login = () => {
   const auth = getAuth();
   let [email,setEmail]=useState("")
@@ -21,12 +24,47 @@ const Login = () => {
   let [eye,setEye]=useState(false)
   let navigate=useNavigate()
   let [emailerror,setEmailError]=useState("")
+  let [popup,setPopUp]=useState(false)
   let handleEmail = (e)=> {
+    
+    
     setEmail(e.target.value);
     setEmailError("")
     
   }
-  
+   let handleForgetPassword = ()=> {
+    // console.log("Clicked");
+    setPopUp(true)
+    
+   }
+  let handleBack = (e)=> {
+    console.log("clicked");
+    e.preventDefault(); // Prevents the form from submitting/reloading
+    setPopUp(false);
+     
+    
+  }
+  let handleSend = (e)=> {
+    // console.log("Clicked");
+    setPopUp(true)
+    e.preventDefault()
+ sendPasswordResetEmail(auth, email)
+  .then(() => {
+    toast.success("check you email");
+    setPopUp(false)
+    
+    // Password reset email sent!
+    // ..
+  })
+  .catch((error) => {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.log(errorCode);
+    
+    // ..
+  });
+     
+  }
   let handleEye = ()=> {
     setEye(!eye)
   }
@@ -73,8 +111,28 @@ const Login = () => {
   
   return (
     <>
-
-      <section className='py-[140px]' >
+    {
+      popup ?    <section>
+      <div className=' z-50 absolute top-0 left-0 w-full h-screen bg-black/30 flex items-center justify-center'  >
+      <div className='w-[600px] py-[200px] px-10 bg-amber-50 rounded-md' >
+     <form  className='flex flex-col  items-center justify-center gap-7' action="
+     ">
+      <label  className='text-4xl text-shadow-pink-900 font-extrabold font-poppins' htmlFor="email">Write Your Email</label>
+      <input  className='w-[70%] outline-0 border-b-2 border-red-500 text-normal ' id='email' type="text" placeholder='Enter Your Email' />
+       <div className='mt-2 flex gap-x-4 items-center justify-center'>
+         <div onClick={handleBack} >
+          <Button text={`Back`}  className={`!px-15`} />
+         </div>
+      <div onClick={handleSend} >
+           <Button text={`Send`} className={`!px-15`} />
+      </div>
+       </div>
+     </form>
+      </div>
+      
+      
+      </div>
+    </section>   :  <section className='py-[140px]' >
         <Container>
           <Flex className={` gap-x-[130px]   justify-evenly items-center`} >
             <div>    <Image src={Login1} /></div>
@@ -106,7 +164,7 @@ const Login = () => {
                 <div onClick={handleLogIn} >
                   <Button   text={`Log In`}   />
                 </div>
-                <p className='text-poppins text-red  text-4 font-normal' >Forget Password?</p>
+                <p  onClick={handleForgetPassword} className='  cursor-pointer text-poppins text-red  text-4 font-normal' >Forget Password?</p>
               </Flex>
             </div>
 
@@ -127,7 +185,9 @@ const Login = () => {
         
                 />
       </section>
-
+    }
+    
+   
     </>
   )
 }
