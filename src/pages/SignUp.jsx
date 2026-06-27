@@ -5,48 +5,107 @@ import Login2 from '../assets/login.png'
 import Heading from '../Components/Heading'
 import Flex from '../Components/Flex'
 import Button from '../Components/Button'
-import { Form } from 'react-router-dom'
+import { Form, useNavigate } from 'react-router-dom'
 import { FcGoogle } from "react-icons/fc";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import { Link } from 'react-router-dom'
 import { FaRegEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
+import { GoogleAuthProvider } from "firebase/auth";
+
 const SignUp = () => {
-  const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  const lowerCase = /^(?=.*[a-z])/
+  const uperCase = /(?=.*[A-Z])/
+  let digitMinimun = /(?=.*\d)/
+  const speicalCharacter = / ?=.*[@$!%*?&]/
+const atleastEight = /^.{8,}$/
   const auth = getAuth();
+  let pattern = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
   let [name, setName] = useState("")
   let [email, setEmail] = useState("")
   let [password, setPassword] = useState("")
-  let [nameerror,setNameError]=useState("")
-  let [emailerror,setEmailError]=useState("")
-  let [passworderror,setPasswordError]=useState()
-  let [eye,setEye]=useState(false)
+  let [nameerror, setNameError] = useState("")
+  let [emailerror, setEmailError] = useState("")
+  let [passworderror, setPasswordError] = useState()
+  let [eye, setEye] = useState(false)
+  let navigate=useNavigate()
+
   let handleSendUp = () => {
     // console.log(name);
     // console.log(email);
     // console.log(password);
-   
 
-       if (!name ) {
-        setNameError("Enter Your Name Please");
 
-        
-       }
-       if (!email ){
-        setEmailError("Please Enter Your Email or Phone Number")
-       }
-     
-       }
-       if (!password) {
-        setPasswordError("Please Enter Your Password")
-       }
-   
+    if (!name) {
+      setNameError("Enter Your Name Please");
 
-  
-  let  handleEye= ()=> {
+
+    }
+    if (!email) {
+      setEmailError("Please Enter Your Email or Phone Number")
+    }
+    else {
+      if (!(pattern.test(email))) {
+        toast.error("enter a valid email");
+
+      }
+
+    }
+    if (!password) {
+      setPasswordError("Please Enter Your Password")
+
+    }
+    else if (!lowerCase.test(password)) {
+      toast.error("Enter a lower case");
+
+
+    }
+    else if (!uperCase.test(password)) {
+      toast.error("Enter a Password with UpperCase")
+    }
+    // else if (!speicalCharacter.test(password)) {
+    //   toast.error("Enter a speical character pleasae")
+    // }
+    else if (!atleastEight.test(password)) {
+      toast.error("Enter Minimun 8 characters")
+    }
+    else if (!digitMinimun.test(password)) {
+      toast.error("Enter a one Digit minium")
+    }
+    if (name && email && pattern.test(email) && password && lowerCase.test(password) && uperCase.test(password) &&   digitMinimun.test(password) && atleastEight.test(password)) {
+
+      createUserWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+          toast.success("Regestation done!! ");
+
+        })
+        .catch((error) => {
+          const errorCode = error.code;
+          const errorMessage = error.message;
+          if (errorCode.includes("auth/email-already-in-use")) {
+            toast.error("Email already In Use")
+          }
+          if (errorCode.includes("auth/weak-password ")) {
+            toast.error("Enter a Strong Password")
+          }
+          // ..
+          console.log(errorCode);
+          console.log(errorMessage);
+
+        });
+
+    }
+
+  }
+
+
+
+
+  let handleEye = () => {
     setEye(!eye)
-   }
+  }
   let handleName = (e) => {
     setName(e.target.value);
     setNameError("")
@@ -62,6 +121,24 @@ const SignUp = () => {
     setPasswordError("")
 
   }
+  let handleGoogle = () => {
+    console.log("clicked");
+    const provider = new GoogleAuthProvider();
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        console.log("signed in done");
+        navigate("/")
+
+
+      }).catch((error) => {
+
+        const errorCode = error.code;
+        const errorMessage = error.message;
+     if (errorCode){
+      toast.error("Error here")
+     }
+      });
+  }
   return (
 
 
@@ -75,70 +152,46 @@ const SignUp = () => {
               <Image src={Login2} />
             </div>
             <div>
-             <div className='w-[370px] min-w-[370px]' >
-               <Heading text={`Create an account`} className={`!text-[36px] `} />
-             </div>
+              <div className='w-[370px] min-w-[370px]' >
+                <Heading text={`Create an account`} className={`!text-[36px] `} />
+              </div>
               <p className=' py-5 font-poppins !font-normal  !text-6  !eading-6' >Enter your details below</p>
               <Form className='flex flex-col gap-y-[40px]' >
                 <input onChange={handleName} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)]' type="text" placeholder='Name' />
                 {
-                  nameerror &&  <p className= ' mt-2 px-2 bg-red-500 text-white py-2  rounded-md ' >{nameerror}</p>
+                  nameerror && <p className=' mt-2 px-2 bg-red-500 text-white py-2  rounded-md ' >{nameerror}</p>
                 }
-               
+
                 <input onChange={handleEmail} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] ' type="text" placeholder='Email or Phone Number' />
                 {
-                  emailerror &&    <p className='bg-red-500 text-white rounded-md py-2 px-2 mt-2 ' > {emailerror}</p>
+                  emailerror && <p className='bg-red-500 text-white rounded-md py-2 px-2 mt-2 ' > {emailerror}</p>
                 }
-               
-                  <div className='relative w-full' >
-                      <input onChange={handlePassword} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] ' type={eye? "password" : "text"} placeholder='Password' />
-                     {
-                      passworderror &&    <p className='bg-red-500 text-white  py-2 px-2 mt-2  rounded-md' >{passworderror}</p>
-                     }
-                      <div  onClick={handleEye} className='absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer text-gray-500' >
-                        {
-                          eye   ?  <FaRegEyeSlash />   : <FaRegEye />
-                        }
-                        
 
-                          
-                      </div>
+                <div className='relative w-full' >
+                  <input onChange={handlePassword} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] ' type={eye ? "password" : "text"} placeholder='Password' />
+                  {
+                    passworderror && <p className='bg-red-500 text-white  py-2 px-2 mt-2  rounded-md' >{passworderror}</p>
+                  }
+                  <div onClick={handleEye} className='absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer text-gray-500' >
+                    {
+                      eye ? <FaRegEyeSlash /> : <FaRegEye />
+                    }
+
+
+
                   </div>
-                
-             
-                    {/* <div>
-                       createUserWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        toast.success("Regestation done!! ");
-
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-         if (errorCode.includes("auth/email-already-in-use")) 
-        {
-      toast.error("Email already In Use")
-     }
-     if (errorCode.includes("auth/weak-password "))
-     {
-      toast.error("Enter a Strong Password")
-     }
-        // ..
-        console.log(errorCode);
-        console.log(errorMessage);
-    
-      });
+                </div>
 
 
-                    </div> */}
-             
-             
+                {/* */}
+
+
 
               </Form>
               <div className='mt-10 flex flex-col gap-y-4 ' onClick={handleSendUp} >
                 <Button text={`Create Account`} className={`w-full py-4 text-center`} />
 
-                <button className='w-full cursor-pointer py-4 flex items-center justify-center gap-x-4 border border-[rgba(0,0,0,0.40)] rounded-md transition hover:bg-gray-50'  >
+                <button onClick={handleGoogle} className='w-full cursor-pointer py-4 flex items-center justify-center gap-x-4 border border-[rgba(0,0,0,0.40)] rounded-md transition hover:bg-gray-50'  >
                   <FcGoogle />
                   <p className='text-4 font-poppins font-normal leading-6' >Sign up with Google</p>
                 </button>
@@ -146,9 +199,9 @@ const SignUp = () => {
               </div>
               <Flex className={`items-center justify-center gap-x-2 mt-8`} >
                 <p className='text-poppins font-normal  text-[rgba(0,0,0,1)] text-4 ' >Already have account?</p>
-                 <Link to='/Login' >
-                 <a href="" className='text-poppins font-medium  text-4  text-black underline' >Log in</a>
-                 </Link>
+                <Link to='/Login' >
+                  <a href="" className='text-poppins font-medium  text-4  text-black underline' >Log in</a>
+                </Link>
               </Flex>
             </div>
 

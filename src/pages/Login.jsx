@@ -7,7 +7,7 @@ import Image from '../Components/Image'
 import Login1 from '../assets/login.png'
 import Flex from '../Components/Flex'
 import Heading from '../Components/Heading'
-import { Form } from 'react-router-dom'
+import { Form, useNavigate } from 'react-router-dom'
 import Button from '../Components/Button'
 import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { FaRegEyeSlash } from "react-icons/fa";
@@ -18,6 +18,7 @@ const Login = () => {
   let [email,setEmail]=useState("")
   let [password,setPassword]=useState("")
   let [eye,setEye]=useState(false)
+  let navigate=useNavigate()
   let handleEmail = (e)=> {
     setEmail(e.target.value);
     
@@ -34,6 +35,8 @@ const Login = () => {
     signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
     toast.success("Your are logged in")
+    navigate("/")
+
   })
   .catch((error) => {
     const errorCode = error.code;
