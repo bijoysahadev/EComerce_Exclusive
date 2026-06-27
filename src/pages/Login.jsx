@@ -17,26 +17,45 @@ const Login = () => {
   const auth = getAuth();
   let [email,setEmail]=useState("")
   let [password,setPassword]=useState("")
+  let [passworderror,setPasswordError]=useState("")
   let [eye,setEye]=useState(false)
   let navigate=useNavigate()
+  let [emailerror,setEmailError]=useState("")
   let handleEmail = (e)=> {
     setEmail(e.target.value);
+    setEmailError("")
     
   }
+  
   let handleEye = ()=> {
     setEye(!eye)
   }
   let handlePassword = (e)=> {
     setPassword(e.target.value);
+    setPasswordError("")
     
   }
   let handleLogIn = ()=> {
     // console.log("loggedin");
+    if (!email) {
+      setEmailError("Please Enter Your Email")
+     
+    }
+    if (!password) {
+      setPasswordError("PLease type Your Password")
+     
+    }
     signInWithEmailAndPassword(auth, email, password)
   .then((userCredential) => {
-    toast.success("Your are logged in")
-    navigate("/")
-
+    if (userCredential.user.emailVerified) {
+       toast.success("Your are logged in ")
+     setTimeout(()=> {
+ navigate("/")
+     },2000)
+    }
+    else {
+      toast.error("Verify Your Email")
+    }
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -51,23 +70,29 @@ const Login = () => {
    
 
   }
+  
   return (
     <>
 
       <section className='py-[140px]' >
         <Container>
-          <Flex className={` gap-x-[130px] justify-evenly items-center`} >
+          <Flex className={` gap-x-[130px]   justify-evenly items-center`} >
             <div>    <Image src={Login1} /></div>
             <div>
              <div className='w-[370px] min-w-[370px]' >
                   <Heading text='Log in to Exclusive' className={`font-medium`} />
              </div>
               <p className='font-poppins text-[16px]   font-normal text-[rgb(0,0,0)] pt-5 pb-[40px]' > Enter your details below</p>
-              <Form>
+              <Form className='flex flex-col gap-y-[40px]' >
                 <input  onChange={handleEmail} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)]' type="text" placeholder='Email or Phone Number' />
-                 <p className='bg-red-500 text-white' >Please Enter Your Name</p>
+                 {
+                  emailerror &&  <p className='bg-red-500 text-white py-2 px-2 mt-2' >{emailerror}</p>
+                 }
                 <div className='relative w-full' >
-                     <input   onChange={handlePassword} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] pt-16' type={eye ? "text" : "password"} placeholder='Password' />
+                     <input   onChange={handlePassword} className='w-full outline-0 border-b-2 border-[rgba(0,0,0,0.10)] ' type={eye ?"password" :"text"  } placeholder='Password' />
+                     {
+                      passworderror &&  <p className='bg-red-500 text-white px-2 py-2 mt-2' >{passworderror}</p>
+                     }
                      <div  onClick={handleEye} className='absolute top-1/2 -translate-y-1/2 right-2 cursor-pointer text-gray-500' >
                      
                      

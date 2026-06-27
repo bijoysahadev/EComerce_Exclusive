@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom'
 import { FaRegEyeSlash } from "react-icons/fa";
 import { FaRegEye } from "react-icons/fa";
 import { GoogleAuthProvider } from "firebase/auth";
+import {  sendEmailVerification } from "firebase/auth";
 
 const SignUp = () => {
   // const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -78,7 +79,14 @@ const atleastEight = /^.{8,}$/
 
       createUserWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
-          toast.success("Regestation done!! ");
+          sendEmailVerification(auth.currentUser)
+  .then(() => {
+      // console.log(userCredential.user );
+          
+          toast.success("Check Your Email to Verify ! ");
+
+  });
+        
 
         })
         .catch((error) => {
