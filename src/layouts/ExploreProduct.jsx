@@ -15,6 +15,7 @@ import ExploreProduct5 from "../assets/exploreproduct5.png";
 import ExploreProduct6 from "../assets/exploreproduct6.png";
 import ExploreProduct7 from "../assets/exploreproduct7.png";
 import Image from '../Components/Image'
+import Apidata from '../data'
 // 
 
 import NextArrow from '../Components/NextArrow'
@@ -55,53 +56,21 @@ const settings = {
    <div className='w-full' >
      <SliderComponent {...settings}>
    
-        <div >
-        <Card  image={ExploreProduct1}    tittle={`HAVIT HV-G92 Gamepad`}  badge={`-40%`} regularprice={`160`} saleprice={`120`} />
+        {
+           Apidata.map (item=> (
+            <div>
+        <Card  image={item.Image}   tittle={item.name}  badge={item.badge} regularprice={item.regularprice } saleprice={item.sellprice} />
       </div>
-      <div>
-        <Card  image={ExploreProduct2}   tittle={`AK-900 Wired Keyboard`}  badge={`-35%`} regularprice={`160`} saleprice={`960`} />
-      </div>
-      <div>
-        <Card  image={ExploreProduct3}   tittle={`AK-900 Wired Keyboard`}  badge={`-35%`} regularprice={`160`} saleprice={`960`} />
-      </div>
-      <div>
-        <Card  image={ExploreProduct4}   tittle={`AK-900 Wired Keyboard`}  badge={`-35%`} regularprice={`160`} saleprice={`960`} />
-      </div>
-      <div>
-        <Card  image={ExploreProduct5}   tittle={`AK-900 Wired Keyboard`}  badge={`-35%`} regularprice={`160`} saleprice={`960`} />
-      </div>
-      <div>
-        <Card  image={ExploreProduct6}   tittle={`AK-900 Wired Keyboard`}  badge={`-35%`} regularprice={`160`} saleprice={`960`} />
-      </div>
-      <div>
-        <Card  image={ExploreProduct7}   tittle={`AK-900 Wired Keyboard`}  badge={`-35%`} regularprice={`160`} saleprice={`960`} />
-      </div>
-      <div>
-        <Card  image={Product3}   tittle={`IPS LCD Gaming Monitor`}  badge={`-30%`} regularprice={`400`} saleprice={`370`} />
-      </div>
-      <div>
-        <Card  image={Product3}   tittle={`IPS LCD Gaming Monitor`}  badge={`-30%`} regularprice={`400`} saleprice={`370`} />
-      </div>
-      <div>
-        <Card  image={ExploreProduct4}   tittle={`AK-900 Wired Keyboard`}  badge={`-35%`} regularprice={`160`} saleprice={`960`} />
-      </div>
-      
-     
-      <div>
-        <Card  image={Product4}   tittle={`S-Series Comfort Chair `}  badge={`-25%`} regularprice={`400`} saleprice={`375`} />
-      </div>
-      <div>
-        <Card  image={Product4}   tittle={`S-Series Comfort Chair `}  badge={`-25%`} regularprice={`400`} saleprice={`375`} />
-      </div>
-      <div>
-        <Card  image={Product4}   tittle={`S-Series Comfort Chair `}  badge={`-25%`} regularprice={`400`} saleprice={`375`} />
-      </div>
-      <div>
-        <Card  image={Product4}   tittle={`S-Series Comfort Chair `}  badge={`-25%`} regularprice={`400`} saleprice={`375`} />
-      </div>
+           ))
+        }
    
      
  
+
+
+ {/*   <div>
+        <Card  image={Product4}   tittle={`S-Series Comfort Chair `}  badge={`-25%`} regularprice={`400`} saleprice={`375`} />
+      </div> */}
      
     </SliderComponent>
 
