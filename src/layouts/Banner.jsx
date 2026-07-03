@@ -50,7 +50,7 @@ const settings = { dots: true, infinite: true,
        <CategoryList  text={`Baby’s & Toys`} type={`false`}/>
        <CategoryList  text={`Groceries & Pets`} type={`false`}/>
        <CategoryList  text={`Health & Beauty`} type={`false`}/>
-       <CategoryList  text={`bijoy and ajoy`} type={`false`}/>
+      
        </ul>
         
         </div>
