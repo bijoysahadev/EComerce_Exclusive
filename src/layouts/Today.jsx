@@ -86,7 +86,7 @@ const Today = () => {
             {
               alldata.slice(0, show).map(item => (
                 <div >
-                  <Card image={item.thumbnail} tittle={item.tittle} badge={item.badge} regularprice={item.regularprice} saleprice={item.sellprice} />
+                  <Card image={item.thumbnail} tittle={item.title} badge={`New`} regularprice={item.price} saleprice={item.discountPercentage} />
                 </div>
               ))
             }

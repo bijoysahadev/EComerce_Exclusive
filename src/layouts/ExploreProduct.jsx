@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Heading from '../Components/Heading'
 import SubHeading from '../Components/SubHeading'
 import Container from '../Components/Container'
@@ -15,7 +15,7 @@ import ExploreProduct5 from "../assets/exploreproduct5.png";
 import ExploreProduct6 from "../assets/exploreproduct6.png";
 import ExploreProduct7 from "../assets/exploreproduct7.png";
 import Image from '../Components/Image'
-import Apidata from '../data'
+
 // 
 
 import NextArrow from '../Components/NextArrow'
@@ -29,59 +29,85 @@ import Flex from '../Components/Flex'
 import Button from '../Components/Button'
 // 
 const SliderComponent = Slider.default || Slider;
-
+// 
 
 // 
 const ExploreProduct = () => {
-    // 
-const settings = {
+  // 
+  let [show, SetShow] = useState(4)
+  let [isGridView, SetIsGridView] = useState(false)
+
+
+  const handleLoadMore = () => {
+    SetIsGridView(true) // Turns off the slider completely
+    SetShow((prevShow) => prevShow + 4) // Increments by 4 every click
+  }
+
+
+
+  // 
+  // 
+  const settings = {
     dots: false,
     rows: 2,
-    Arrows: true ,
+    Arrows: true,
     infinite: false,
-   slidesPerRow: 4,
+    slidesPerRow: 4,
     slidesToScroll: 1,
     nextArrow: <NextArrow />,
-    prevArrow: <PreviousArrow/>
+    prevArrow: <PreviousArrow />
   };
+  let [Apidata, SetApidata] = useState([])
 
+  useEffect(() => {
+    fetch("https://dummyjson.com/products")
+      .then((res) => res.json())
+      .then((data) => SetApidata(data.products)
+      )
+  }, [])
 
-
-    // 
+  // 
   return (
-   <section>
-   <Container>
-      <SubHeading tittle={`Our Products`} className2={`gap-x-4`} />
-    <Heading  text={`Explore Our Products`}  />
-   <div className='w-full' >
-     <SliderComponent {...settings}>
-   
-        {
-           Apidata.map (item=> (
-            <div>
-        <Card  image={item.Image}   tittle={item.name}  badge={item.badge} regularprice={item.regularprice } saleprice={item.sellprice} />
-      </div>
-           ))
-        }
-   
-     
- 
+    <section>
+      <Container>
+        <SubHeading tittle={`Our Products`} className2={`gap-x-4`} />
+        <Heading text={`Explore Our Products`} />
+        <div className='w-full' >
+          {
+            !isGridView ? (<SliderComponent {...settings}>
+
+              {
+                Apidata.map(item => (
+                  <div >
+                    <Card image={item.thumbnail} tittle={item.title} badge={`New`} regularprice={item.price} saleprice={item.discountPercentage} />
+                  </div>
+                ))
+              }
 
 
- {/*   <div>
-        <Card  image={Product4}   tittle={`S-Series Comfort Chair `}  badge={`-25%`} regularprice={`400`} saleprice={`375`} />
-      </div> */}
-     
-    </SliderComponent>
 
-  <div  className='text-center pt-19' >
-    <Button  text={`View All Products`} />
-  </div>
 
-   </div>
-    
-   </Container>
-   </section>
+
+
+
+            </SliderComponent>) :  <Flex className={` flex-wrap gap-y-10 justify-between`} >
+              
+              { Apidata.slice(0,show).map(item => (
+              <div >
+                <Card image={item.thumbnail} tittle={item.title} badge={`New`} regularprice={item.price} saleprice={item.discountPercentage} />
+              </div>
+            ))}
+            </Flex>
+          }
+
+          <div onClick={handleLoadMore} className='text-center pt-19' >
+            <Button text={!isGridView ? `View All Products` : `Load More Products`} />
+          </div>
+
+        </div>
+
+      </Container>
+    </section>
   )
 }
 
