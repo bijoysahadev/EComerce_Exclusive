@@ -14,7 +14,7 @@ import NewsPart from "./layouts/NewsPart";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Error from "./pages/Error";
-
+import Cart from "./pages/Cart";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
@@ -24,6 +24,7 @@ const router = createBrowserRouter(
        <Route path="/About" element={<About />}></Route>
        <Route path="/SignUp" element={<SignUp />}></Route>
        <Route path="/Login" element={<Login />}></Route>
+       <Route path="/Cart" element={<Cart />}></Route>
        <Route path="/*" element={<Error/>}></Route>
 
      
