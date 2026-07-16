@@ -4,7 +4,15 @@ import Image from '../Components/Image'
 import CartImagge1 from '../assets/cart1.png'
 import CartImagge2 from '../assets/cart2.png'
 import Button from '../Components/Button'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 const Cart = () => {
+     let data1=useSelector((state)=>state.breadcrumb.prevoiusvalue
+     )
+     let data2=useSelector((state)=>state.breadcrumb.currentvalue
+     )
+
+     
     let handleInput=(e)=> {
         console.log(e.target.value);
         // setQuantity(quantity+1)
@@ -50,9 +58,11 @@ const Cart = () => {
     <Container>
         <div className='py-[100px]' >
             <div className='flex items-center justify-start' >
-                <p className='font-poppins font-normal  text-black text-[14px]  leading-3' >Home</p>
+                <p   className='font-poppins font-normal  text-black text-[14px]  leading-3' >
+                    <Link to={data1=="Home" ? "/" : `/${data1}`} >{data1}</Link>
+                </p>
                 <span>/</span>
-                <p  className='font-poppins font-normal  text-black text-[14px]  leading-3'  >Cart</p>
+                <p  className='font-poppins font-normal  text-black text-[14px]  leading-3'  >{data2}</p>
             </div>
         </div>
         <div>
