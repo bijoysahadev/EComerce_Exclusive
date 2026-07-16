@@ -92,10 +92,32 @@ const Cart = () => {
                 <Button text={`Update Cart`}/>
             </div>
         </div>
-        <div className='flex gap-x-4' >
+      <div className='flex  items-center justify-between' >
+          <div className='flex gap-x-4' >
             <input type="text" placeholder='Coupon Code '  className= ' text-[16px] font-poppins text-[rgba(0,0,0,1)]  border border-b-black  outline-[rgba(0,0,0,0.40)] placeholder:font-poppins placeholder:text-[rgba(0,0,0,1)] placeholder:text-[16px] placeholder:font-normal py-4 pl-[24px] pr-[164px]   '   />
             <Button  text={`Apply Coupon`}/>
         </div>
+        <div  className=' w-full max-w-[470px] bg-white px-6 py-8' >
+           
+                <p className='font-poppins  text-[20px] text-[rgba(0,0,0,1)]' >Cart Total</p>
+           
+           <div className=' py-4 border-b border-[#000000] flex items-center justify-between ' >
+   <p  className={`font-poppins text-[16px] font-normal text-[rgba(0,0,0,1)]`} >Subtotal:</p>
+   <p  className={`font-poppins text-[16px] font-normal text-[rgba(0,0,0,1)]`} >$1750</p>
+           </div>
+           <div className='py-4 border-b border-[#000000] flex items-center\ justify-between ' >
+   <p  className={`font-poppins text-[16px] font-normal text-[rgba(0,0,0,1)]`} >Shipping:</p>
+   <p  className={`font-poppins text-[16px] font-normal text-[rgba(0,0,0,1)]`} >Free</p>
+           </div>
+           <div className='pt-4 flex items-center\ justify-between ' >
+   <p  className={`font-poppins text-[16px] font-normal text-[rgba(0,0,0,1)]`} >Total</p>
+   <p  className={`font-poppins text-[16px] font-normal text-[rgba(0,0,0,1)]`} >$1750</p>
+           </div>
+           <div className='flex flex-col items-center justify-center py-10' >
+            <Button  text={`Procees to checkout`}/>
+           </div>
+        </div> 
+      </div>
     </Container>
    </section>
   )
