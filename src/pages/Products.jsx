@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Navbar from '../layouts/Navbar'
 import Footer from '../layouts/Footer'
 import Language from '../Components/Language'
@@ -14,6 +14,13 @@ import  Pagination  from '../Components/Pagination'
 
 
 const Products = () => {
+  let [show,setShow]=useState(6)
+ 
+  
+  let handleSelect=(e)=> {
+    setShow(e.target.value);
+    
+  }
     let data1=useSelector((state)=>state.breadcrumb.prevoiusvalue
      )
      let data2=useSelector((state)=>state.breadcrumb.currentvalue
@@ -65,7 +72,18 @@ const Products = () => {
        </ul>
        </div>
     <div className='w-9/12   '> 
-    <Flex className={`flex-wrap gap-5 `} >
+   
+      <div className='flex   justify-end items-center pb-6  ' >
+        <label htmlFor="">Show :</label>
+        <select  onChange={handleSelect} className='ml-4 py-2 px-3 border border-black rounded-md' >
+          <option value="6">6</option>
+          <option value="9">9</option>
+          <option value="12">12</option>
+          <option value="15">15</option>
+         
+        </select>
+        
+      </div>
         {/* <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} />
      <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} />
      <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} />
@@ -80,9 +98,11 @@ const Products = () => {
      <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} />
      <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} /> */}
   
-<Pagination itemsPerPage={9} />
+   <Flex className={`gap-6 flex-wrap`} >
+    <Pagination itemsPerPage={show} />
+   </Flex>
   
-    </Flex> 
+  
     </div>
     </Flex>
     

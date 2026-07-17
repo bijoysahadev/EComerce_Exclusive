@@ -39,10 +39,11 @@ const Navbar = () => {
           <div className='w-5/12 '>
             <ul className='flex gap-x-12 cursor-pointer before relative '>
               <Link onClick={() => handleBreadcumb("Home")} to='/'><ListItem text={`Home`} /></Link>
-              <Link onClick={() => handleBreadcumb("Contact")} to='/Contact'><ListItem text={`Contact`} /></Link>
+              {/* <Link onClick={() => handleBreadcumb("Contact")} to='/Contact'><ListItem text={`Contact`} /></Link> */}
               <Link onClick={() => handleBreadcumb("Cart")} to='/Cart'>   <ListItem text={`Cart`} /></Link>
               <Link onClick={() => handleBreadcumb("SignUp")} to='/SignUp'> <ListItem text={`SignUp`} /></Link>
               <Link onClick={() => handleBreadcumb("Products")} to='/Products'> <ListItem text={`Products`} /></Link>
+              <Link onClick={() => handleBreadcumb("ProductDetails")} to='/ProductDetails'> <ListItem text={`ProductDetails`} /></Link>
             </ul>
           </div>
           <div className='w-4/12  pl-10 relative'>
