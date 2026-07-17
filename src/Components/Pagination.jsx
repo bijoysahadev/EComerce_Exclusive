@@ -63,6 +63,9 @@ function Pagination({ itemsPerPage }) {
         pageCount={pageCount}
         previousLabel=""
         renderOnZeroPageCount={null}
+        containerClassName ="flex  gap-3 "
+        pageClassName =" "
+        pageLinkClassName=" bg-black py-1 px-4 text-white block cursor-pointer  "
       />
     </>
   ) }
