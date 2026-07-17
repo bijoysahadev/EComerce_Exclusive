@@ -10,6 +10,9 @@ import { useSelector } from 'react-redux'
 import CategoryList from '../Components/CategoryList'
 import Card from '../Components/Card'
 import Product1 from "../assets/product1.png";
+import  Pagination  from '../Components/Pagination'
+
+
 const Products = () => {
     let data1=useSelector((state)=>state.breadcrumb.prevoiusvalue
      )
@@ -61,9 +64,9 @@ const Products = () => {
      </Flex>
        </ul>
        </div>
-    <div className='w-9/12  '> 
+    <div className='w-9/12   '> 
     <Flex className={`flex-wrap gap-5 `} >
-        <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} />
+        {/* <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} />
      <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} />
      <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} />
      <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} />
@@ -75,8 +78,11 @@ const Products = () => {
      <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} />
      <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} />
      <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} />
-     <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} />
-    </Flex>
+     <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} /> */}
+  
+<Pagination itemsPerPage={9} />
+  
+    </Flex> 
     </div>
     </Flex>
     
