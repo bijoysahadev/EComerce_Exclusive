@@ -11,7 +11,8 @@ import { FaStar } from "react-icons/fa6";
 import { CiStar } from "react-icons/ci";
 import Button from '../Components/Button'
 import { CiHeart } from "react-icons/ci";
-
+import Delievery from '../assets/icon-delivery.png'
+import Return from '../assets/Icon-return.png'
 const ProductDetails = () => {
   return (
     <section className='pt-20  ' >
@@ -111,6 +112,28 @@ const ProductDetails = () => {
   <div className='rounded-[4px] border border-black ' >
 <CiHeart className='text-[24px]' />
   </div>
+
+  
+         </div>
+         <div className='flex flex-col py-10 items-center justify-center' >
+          <div className='w-[399px] h-[90px] flex items-center justify-center gap-6 bg-yellow-300 ' >
+            <div>
+              <Image src={Delievery}  />
+            </div>
+            <div>
+              <h5 className='font-poppins text-[16px] text-black leading-[24px]  font-medium' >Free Delivery</h5>
+              <p className='font-poppins text-[12px] leading-[18px] text-black font-medium ' >Enter your postal code for Delivery Availability</p>
+            </div>
+          </div>
+          <div className='w-[399px] h-[90px] flex items-center justify-center gap-6 bg-yellow-300 ' >
+              <div>
+              <Image src={Return}  />
+            </div>
+            <div>
+              <h5 className='font-poppins text-[16px] text-black leading-[24px]  font-medium' >Return Delivery</h5>
+              <p className='font-poppins text-[12px] leading-[18px] text-black font-medium ' >Free 30 Days Delivery Returns. Details</p>
+            </div>
+          </div>
          </div>
           </div>
 
