@@ -60,25 +60,25 @@ const Today = () => {
               <Card image={Product1} tittle={`HAVIT HV-G92 Gamepad`} badge={`-40%`} regularprice={`160`} saleprice={`120`} />
             </div>
             <div  >
-              <Card image={Product2} tittle={`AK-900 Wired Keyboard`} badge={`-35%`} regularprice={`160`} saleprice={`960`} />
+              <Card  image={Product2} tittle={`AK-900 Wired Keyboard`} badge={`-35%`} regularprice={`160`} saleprice={`960`} />
             </div>
             <div  >
-              <Card image={Product3} tittle={`IPS LCD Gaming Monitor`} badge={`-30%`} regularprice={`400`} saleprice={`370`} />
+              <Card  image={Product3} tittle={`IPS LCD Gaming Monitor`} badge={`-30%`} regularprice={`400`} saleprice={`370`} />
             </div>
             <div  >
-              <Card image={Product4} tittle={`S-Series Comfort Chair `} badge={`-25%`} regularprice={`400`} saleprice={`375`} />
+              <Card  image={Product4} tittle={`S-Series Comfort Chair `} badge={`-25%`} regularprice={`400`} saleprice={`375`} />
             </div>
             <div  >
-              <Card image={Product4} tittle={`S-Series Comfort Chair `} badge={`-25%`} regularprice={`400`} saleprice={`375`} />
+              <Card  image={Product4} tittle={`S-Series Comfort Chair `} badge={`-25%`} regularprice={`400`} saleprice={`375`} />
             </div>
             <div  >
-              <Card image={Product4} tittle={`S-Series Comfort Chair `} badge={`-25%`} regularprice={`400`} saleprice={`375`} />
+              <Card  image={Product4} tittle={`S-Series Comfort Chair `} badge={`-25%`} regularprice={`400`} saleprice={`375`} />
             </div>
             <div  >
-              <Card image={Product4} tittle={`S-Series Comfort Chair `} badge={`-25%`} regularprice={`400`} saleprice={`375`} />
+              <Card  image={Product4} tittle={`S-Series Comfort Chair `} badge={`-25%`} regularprice={`400`} saleprice={`375`} />
             </div>
             <div  >
-              <Card image={Product4} tittle={`S-Series Comfort Chair `} badge={`-25%`} regularprice={`400`} saleprice={`375`} />
+              <Card  image={Product4} tittle={`S-Series Comfort Chair `} badge={`-25%`} regularprice={`400`} saleprice={`375`} />
             </div>
 
           </SliderComponent>
@@ -86,7 +86,7 @@ const Today = () => {
             {
               alldata.slice(0, show).map(item => (
                 <div >
-                  <Card image={item.thumbnail} tittle={item.title} badge={`New`} regularprice={item.price} saleprice={item.discountPercentage} />
+                  <Card id={item.id} image={item.thumbnail} tittle={item.title} badge={`New`} regularprice={item.price} saleprice={item.discountPercentage} />
                 </div>
               ))
             }

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Flex from '../Components/Flex'
 import Container from '../Components/Container'
 import Image from '../Components/Image'
@@ -16,7 +16,29 @@ import Return from '../assets/Icon-return.png'
 import SubHeading from '../Components/SubHeading'
 import Card from '../Components/Card'
 import Product1 from '../assets/product1.png'
+import { useParams } from 'react-router-dom'
 const ProductDetails = () => {
+ 
+  let [singleproduct,setSinglproduct]=useState([])
+  let params=useParams()
+  console.log(params.id);
+   useEffect(() => {
+ 
+      fetch(`https://dummyjson.com/products/${params.id} `)
+        .then((res) => res.json())
+        .then((data) => setSinglproduct([data])
+        )
+    }, [])
+//  singleproduct.map(item=>{
+//   console.log(item.images);
+//   item.images.map(item2=> {
+//     console.log(item2);
+    
+//   })
+  
+//  })
+
+ 
   return (
     <section className='pt-20  ' >
       <Container>
@@ -28,27 +50,45 @@ const ProductDetails = () => {
           <p className='font-poppins font-normal  text-black text-[14px]  leading-3' >Havic HV G-92 Gamepad</p>
         </div>
         <Flex>
-          <div className='w-2/12 gap-4  flex flex-col items-center justify-center object-cover '>
+          {/*  */}
+       {
+        singleproduct &&
+        singleproduct.map(item=>(
+          <>
+             <div className='w-2/12 gap-4  flex flex-col items-center justify-center object-cover '>
             <div className='w-[170px] h-[138px] bg-[rgba(245,245,245,0.10)]  '  >
-              <Image src={Play1} className={`w-full h-full   `} />
+              <Image src={item.images[0]} className={`w-full h-full   `} />
             </div>
+            
             <div className='w-[122px] h-[106px] bg-[rgba(245,245,245,0.10)]  '  >
-              <Image src={Play2} className={`w-full h-full`} />
+              <Image src={item.images[1]} className={`w-full h-full`} />
             </div>
             <div className='w-[122px] h-[106px]  bg-[rgba(245,245,245,0.10)]  '  >
-              <Image src={Play3} className={`w-full h-full`} />
+              <Image src={item.images[2]} className={`w-full h-full`} />
             </div>
             <div className='w-[122px] h-[106px] bg-[rgba(245,245,245,0.10)]  '  >
-              <Image src={Play4} className={`w-full h-full`} />
+              <Image src={item.images[0]} className={`w-full h-full`} />
             </div>
 
-
           </div>
+          </>
+        ))
+       }
+          {/*  */}
           <div className='w-5/12  ' >
-            <Image src={PlayM} />
+           {  singleproduct &&
+            singleproduct.map(item=>(
+               <Image src={item.thumbnail} />
+
+
+            ))
+           }
           </div>
           <div className='w-5/12 flex flex-col items- ' >
-            <p className=' ml-5 font-inter text-black font-semibold  text-[24px] leading-[24px] ' >Havic HV G-92 Gamepad</p>
+          {
+            singleproduct.map(item=>(
+              <>
+  <p className=' ml-5 font-inter text-black font-semibold  text-[24px] leading-[24px] ' >{item.title}</p>
             <div className=' ml-4  flex gap-4 w-full flex mt-4 ' >
               <div className='flex  text-yellow-500 ' >
                 <FaStar />
@@ -60,24 +100,28 @@ const ProductDetails = () => {
                 </div>
               </div>
 
-              <div className='  flex items-center gap-2 justify-center  font-poppins  font-normal text-[14px] text-[#F5F5F5]' >
+              <div className='  flex items-center gap-2 justify-center  font-poppins  font-normal text-[14px] text-red' >
 
                 <span>(</span><p>(150 Reviews)</p><span>)</span>  <span>  /</span>
 
               </div>
               <div className='' >
-                <p className='text-[#00FF66] font-poppins  font-normal text-[14px] ' >In Stock</p>
+                <p className='text-[#00FF66] font-poppins  font-normal text-[14px] ' >In Stock{item.stock}</p>
               </div>
 
 
             </div >
 
-            <h2 className={`ml-5  py-[10px] font-inter font-normal leading-[24px]  text-[#000000]   text-[24px] `} >$192.00</h2>
+            <h2 className={`ml-5  py-[10px] font-inter font-normal leading-[24px]  text-[#000000]   text-[24px] `} >{item.price}</h2>
             <div className='ml-3 w-[400px] flex items-center justify-start ' >
               <div className='border-b border-black py-[24px]  ' >
-                <p className=' ml-5 font-poppins  font-normal  leading-[21px] text-[#000000] text-[14px] ' >PlayStation 5 Controller Skin High quality vinyl with air channel adhesive for easy bubble free install & mess free removal Pressure sensitive.</p>
+                <p className=' ml-5 font-poppins  font-normal  leading-[21px] text-[#000000] text-[14px] ' >{item.description}</p>
               </div>
             </div>
+              </>
+            ))
+          }
+          
             <div className='flex gap-5 items-center' >
               <h4 className='ml-5 font-inter font-normal text-[20px] text-black ' >Colours:</h4>
               <div className='w-[20px] h-[20px] bg-[#A0BCE0] rounded-full ' ></div>

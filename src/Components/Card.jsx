@@ -5,8 +5,13 @@ import Flex from "./Flex";
 import { IoIosHeartEmpty } from "react-icons/io";
 import { LuEye } from "react-icons/lu";
 import { IoMdStar } from "react-icons/io";
-const Card = ({image,tittle,badge,saleprice,regularprice,className}) => {
+import { Link, useParams } from "react-router-dom";
+const Card = ({id,image,tittle,badge,saleprice,regularprice,className}) => {
+  let params=useParams()
+  console.log(params.id);
+  
   return (
+    <Link to={`/ProductDetails/${id}`} >
     <div className={`w-[270px]  group ${className} `}>
       <Flex className="relative  overflow-hidden items-center w-[250px] w-full justify-center rounded-[4px]   bg-[#F5F5F5] ">
      <div className="flex items-center justify-center w-full h-[250px] ">
@@ -48,7 +53,7 @@ const Card = ({image,tittle,badge,saleprice,regularprice,className}) => {
 </ul>
 <p className="font-poppins font-medium text-[14px] text-[rgba(0,0,0,0.50)]"  >(88)</p>
   </Flex>
-    </div>
+    </div></Link>
   );
 };
 
