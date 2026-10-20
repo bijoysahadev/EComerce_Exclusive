@@ -13,6 +13,9 @@ import Button from '../Components/Button'
 import { CiHeart } from "react-icons/ci";
 import Delievery from '../assets/icon-delivery.png'
 import Return from '../assets/Icon-return.png'
+import SubHeading from '../Components/SubHeading'
+import Card from '../Components/Card'
+import Product1 from '../assets/product1.png'
 const ProductDetails = () => {
   return (
     <section className='pt-20  ' >
@@ -41,10 +44,10 @@ const ProductDetails = () => {
 
 
           </div>
-          <div className='w-5/12  bg-amber-700' >
+          <div className='w-5/12  ' >
             <Image src={PlayM} />
           </div>
-          <div className='w-5/12 flex flex-col items-  bg-blue-700' >
+          <div className='w-5/12 flex flex-col items- ' >
             <p className=' ml-5 font-inter text-black font-semibold  text-[24px] leading-[24px] ' >Havic HV G-92 Gamepad</p>
             <div className=' ml-4  flex gap-4 w-full flex mt-4 ' >
               <div className='flex  text-yellow-500 ' >
@@ -137,6 +140,15 @@ const ProductDetails = () => {
          </div>
           </div>
 
+        </Flex>
+        <SubHeading tittle={`Related Item`} className2={`gap-4`} className1={`py-[150px]`} />
+        <Flex className={`items-center  justify-center gap-5 pb-20 `}  >
+          
+          <Card   image={Product1}   badge={`40%`}  tittle={`HAVIT HV-G92 Gamepad`}  saleprice={`$120`}   regularprice={`$160`} />
+          <Card    image={Product1}  badge={`40%`}  tittle={`HAVIT HV-G92 Gamepad`}  saleprice={`$120`}   regularprice={`$160`}  />
+          <Card  image={Product1}   badge={`40%`}  tittle={`HAVIT HV-G92 Gamepad`}  saleprice={`$120`}   regularprice={`$160`} />
+          <Card   image={Product1}  badge={`40%`}  tittle={`HAVIT HV-G92 Gamepad`}  saleprice={`$120`}   regularprice={`$160`}  />
+          <Card    image={Product1}   badge={`40%`}  tittle={`HAVIT HV-G92 Gamepad`}  saleprice={`$120`}   regularprice={`$160`} />
         </Flex>
       </Container>
     </section>
