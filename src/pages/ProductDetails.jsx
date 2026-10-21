@@ -29,13 +29,12 @@ const ProductDetails = () => {
 
     fetch(`https://dummyjson.com/products/${params.id} `)
       .then((res) => res.json())
-      .then((data) => 
-     {
-         setSinglproduct([data])
-      setLoading(false)
-     }
+      .then((data) => {
+        setSinglproduct([data])
+        setLoading(false)
+      }
       )
-      
+
   }, [])
   //  singleproduct.map(item=>{
   //   console.log(item.images);
@@ -51,163 +50,163 @@ const ProductDetails = () => {
     <>
       {
         loading ?
-       <Container>   <Image src={Gif} /></Container>
-       : <section className='pt-20  ' >
-          <Container>
-            <div className='flex pb-20 items-center gap-2 justify-start' >
-              <p className='font-poppins font-normal  text-black text-[14px]  leading-3' >Account</p>
-              <span>/</span>
-              <p className='font-poppins font-normal  text-black text-[14px]  leading-3' >Gaming</p>
-              <span>/</span>
-              <p className='font-poppins font-normal  text-black text-[14px]  leading-3' >Havic HV G-92 Gamepad</p>
-            </div>
-            <Flex>
-              {/*  */}
-              {
-                singleproduct &&
-                singleproduct.map(item => (
-                  <>
-                    <div className='w-2/12 gap-4  flex flex-col items-center justify-center object-cover '>
-                      <div className='w-[170px] h-[138px] bg-[rgba(245,245,245,0.10)]  '  >
-                        <Image src={item.images[0]} className={`w-full h-full   `} />
-                      </div>
-
-                      <div className='w-[122px] h-[106px] bg-[rgba(245,245,245,0.10)]  '  >
-                        <Image src={item.images[1]} className={`w-full h-full`} />
-                      </div>
-                      <div className='w-[122px] h-[106px]  bg-[rgba(245,245,245,0.10)]  '  >
-                        <Image src={item.images[2]} className={`w-full h-full`} />
-                      </div>
-                      <div className='w-[122px] h-[106px] bg-[rgba(245,245,245,0.10)]  '  >
-                        <Image src={item.images[0]} className={`w-full h-full`} />
-                      </div>
-
-                    </div>
-                  </>
-                ))
-              }
-              {/*  */}
-              <div className='w-5/12  ' >
-                {singleproduct &&
-                  singleproduct.map(item => (
-                    <Image src={item.thumbnail} />
-
-
-                  ))
-                }
+          <Container>   <Image src={Gif} /></Container>
+          : <section className='pt-20  ' >
+            <Container>
+              <div className='flex pb-20 items-center gap-2 justify-start' >
+                <p className='font-poppins font-normal  text-black text-[14px]  leading-3' >Account</p>
+                <span>/</span>
+                <p className='font-poppins font-normal  text-black text-[14px]  leading-3' >Gaming</p>
+                <span>/</span>
+                <p className='font-poppins font-normal  text-black text-[14px]  leading-3' >Havic HV G-92 Gamepad</p>
               </div>
-              <div className='w-5/12 flex flex-col items- ' >
+              <Flex>
+                {/*  */}
                 {
+                  singleproduct &&
                   singleproduct.map(item => (
                     <>
-                      <p className=' ml-5 font-inter text-black font-semibold  text-[24px] leading-[24px] ' >{item.title}</p>
-                      <div className=' ml-4  flex gap-4 w-full flex mt-4 ' >
-                        <div className='flex  text-yellow-500 ' >
-                          <FaStar />
-                          <FaStar />
-                          <FaStar />
-                          <FaStar />
-                          <div className='text-black ' >
-                            <CiStar />
-                          </div>
+                      <div className='w-2/12 gap-4  flex flex-col items-center justify-center object-cover '>
+                        <div className='w-[170px] h-[138px] bg-[rgba(245,245,245,0.10)]  '  >
+                          <Image src={item.images[0]} className={`w-full h-full   `} />
                         </div>
 
-                        <div className='  flex items-center gap-2 justify-center  font-poppins  font-normal text-[14px] text-red' >
-
-                          <span>(</span><p>(150 Reviews)</p><span>)</span>  <span>  /</span>
-
+                        <div className='w-[122px] h-[106px] bg-[rgba(245,245,245,0.10)]  '  >
+                          <Image src={item.images[1]} className={`w-full h-full`} />
                         </div>
-                        <div className='' >
-                          <p className='text-[#00FF66] font-poppins  font-normal text-[14px] ' >In Stock{item.stock}</p>
+                        <div className='w-[122px] h-[106px]  bg-[rgba(245,245,245,0.10)]  '  >
+                          <Image src={item.images[2]} className={`w-full h-full`} />
+                        </div>
+                        <div className='w-[122px] h-[106px] bg-[rgba(245,245,245,0.10)]  '  >
+                          <Image src={item.images[0]} className={`w-full h-full`} />
                         </div>
 
-
-                      </div >
-
-                      <h2 className={`ml-5  py-[10px] font-inter font-normal leading-[24px]  text-[#000000]   text-[24px] `} >{item.price}</h2>
-                      <div className='ml-3 w-[400px] flex items-center justify-start ' >
-                        <div className='border-b border-black py-[24px]  ' >
-                          <p className=' ml-5 font-poppins  font-normal  leading-[21px] text-[#000000] text-[14px] ' >{item.description}</p>
-                        </div>
                       </div>
                     </>
                   ))
                 }
+                {/*  */}
+                <div className='w-5/12  ' >
+                  {singleproduct &&
+                    singleproduct.map(item => (
+                      <Image src={item.thumbnail} />
 
-                <div className='flex gap-5 items-center' >
-                  <h4 className='ml-5 font-inter font-normal text-[20px] text-black ' >Colours:</h4>
-                  <div className='w-[20px] h-[20px] bg-[#A0BCE0] rounded-full ' ></div>
-                  <div className='w-[20px] h-[20px] bg-[#E07575] rounded-full ' ></div>
+
+                    ))
+                  }
                 </div>
-                <div className='flex items-center justify-around ' >
-                  <h3 className='font-inter font-normal text-[#000000] text-[20px] ' >Seize</h3>
+                <div className='w-5/12 flex flex-col items- ' >
+                  {
+                    singleproduct.map(item => (
+                      <>
+                        <p className=' ml-5 font-inter text-black font-semibold  text-[24px] leading-[24px] ' >{item.title}</p>
+                        <div className=' ml-4  flex gap-4 w-full flex mt-4 ' >
+                          <div className='flex  text-yellow-500 ' >
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                            <FaStar />
+                            <div className='text-black ' >
+                              <CiStar />
+                            </div>
+                          </div>
 
-                  <div className='border border-[rgba(0,0,0,0.50)] rounded-[4px]' >
-                    <h5 className='hover:bg-[#DB4444] duration-300 hover:text-white hover:border-black px-2 py-2 font-poppins font-medium text-[14px] text-[#000000]' >XS</h5>
-                  </div>
-                  <div className='  border border-[rgba(0,0,0,0.50)] rounded-[4px]' >
-                    <h5 className='hover:bg-[#DB4444] duration-300 hover:text-white hover:border-black  px-2 py-2 font-poppins font-medium text-[14px] text-[#000000]' >S</h5>
-                  </div>
-                  <div className='border border-[rgba(0,0,0,0.50)] rounded-[4px]' >
-                    <h5 className='hover:bg-[#DB4444] duration-300 hover:text-white hover:border-black  px-2 py-2 font-poppins font-medium text-[14px] text-[#000000]' >M</h5>
-                  </div>
-                  <div className='border border-[rgba(0,0,0,0.50)] rounded-[4px]' >
-                    <h5 className='hover:bg-[#DB4444] duration-300 hover:text-white hover:border-black  px-2 py-2 font-poppins font-medium text-[14px] text-[#000000]' >L</h5>
-                  </div>
-                  <div className='border border-[rgba(0,0,0,0.50)] rounded-[4px]' >
-                    <h5 className='hover:bg-[#DB4444] duration-300 hover:text-white hover:border-black  px-2 py-2 font-poppins font-medium text-[14px] text-[#000000]' >XL</h5>
-                  </div>
+                          <div className='  flex items-center gap-2 justify-center  font-poppins  font-normal text-[14px] text-red' >
 
+                            <span>(</span><p>(150 Reviews)</p><span>)</span>  <span>  /</span>
+
+                          </div>
+                          <div className='' >
+                            <p className='text-[#00FF66] font-poppins  font-normal text-[14px] ' >In Stock{item.stock}</p>
+                          </div>
+
+
+                        </div >
+
+                        <h2 className={`ml-5  py-[10px] font-inter font-normal leading-[24px]  text-[#000000]   text-[24px] `} >{item.price}</h2>
+                        <div className='ml-3 w-[400px] flex items-center justify-start ' >
+                          <div className='border-b border-black py-[24px]  ' >
+                            <p className=' ml-5 font-poppins  font-normal  leading-[21px] text-[#000000] text-[14px] ' >{item.description}</p>
+                          </div>
+                        </div>
+                      </>
+                    ))
+                  }
+
+                  <div className='flex gap-5 items-center' >
+                    <h4 className='ml-5 font-inter font-normal text-[20px] text-black ' >Colours:</h4>
+                    <div className='w-[20px] h-[20px] bg-[#A0BCE0] rounded-full ' ></div>
+                    <div className='w-[20px] h-[20px] bg-[#E07575] rounded-full ' ></div>
+                  </div>
+                  <div className='flex items-center justify-around ' >
+                    <h3 className='font-inter font-normal text-[#000000] text-[20px] ' >Seize</h3>
+
+                    <div className='border border-[rgba(0,0,0,0.50)] rounded-[4px]' >
+                      <h5 className='hover:bg-[#DB4444] duration-300 hover:text-white hover:border-black px-2 py-2 font-poppins font-medium text-[14px] text-[#000000]' >XS</h5>
+                    </div>
+                    <div className='  border border-[rgba(0,0,0,0.50)] rounded-[4px]' >
+                      <h5 className='hover:bg-[#DB4444] duration-300 hover:text-white hover:border-black  px-2 py-2 font-poppins font-medium text-[14px] text-[#000000]' >S</h5>
+                    </div>
+                    <div className='border border-[rgba(0,0,0,0.50)] rounded-[4px]' >
+                      <h5 className='hover:bg-[#DB4444] duration-300 hover:text-white hover:border-black  px-2 py-2 font-poppins font-medium text-[14px] text-[#000000]' >M</h5>
+                    </div>
+                    <div className='border border-[rgba(0,0,0,0.50)] rounded-[4px]' >
+                      <h5 className='hover:bg-[#DB4444] duration-300 hover:text-white hover:border-black  px-2 py-2 font-poppins font-medium text-[14px] text-[#000000]' >L</h5>
+                    </div>
+                    <div className='border border-[rgba(0,0,0,0.50)] rounded-[4px]' >
+                      <h5 className='hover:bg-[#DB4444] duration-300 hover:text-white hover:border-black  px-2 py-2 font-poppins font-medium text-[14px] text-[#000000]' >XL</h5>
+                    </div>
+
+                  </div>
+                  <div className=' mt-3 flex items-center justify-around' >
+                    <div className='ml-5 flex border border-black w-[160px] ' >
+                      <div className='w-10 border-r border-black  flex items-center justify-center text-[#000000] ' >-</div>
+                      <div className='w-[80px] border-r border-black py-[10px]  px-[30px]' >2</div>
+                      <div className='w-[40px]' ><Button className={`w-full h-full py-[10px] px-[10px] `} text={`+`} ></Button></div>
+                    </div>
+                    <Button className={`py-[10px] px-[50px] `} text={`Buy Now`} />
+
+
+                    <div className='rounded-[4px] border border-black ' >
+                      <CiHeart className='text-[24px]' />
+                    </div>
+
+
+                  </div>
+                  <div className='flex flex-col py-10 items-center justify-center' >
+                    <div className='w-[399px] h-[90px] flex items-center justify-center gap-6 bg-yellow-300 ' >
+                      <div>
+                        <Image src={Delievery} />
+                      </div>
+                      <div>
+                        <h5 className='font-poppins text-[16px] text-black leading-[24px]  font-medium' >Free Delivery</h5>
+                        <p className='font-poppins text-[12px] leading-[18px] text-black font-medium ' >Enter your postal code for Delivery Availability</p>
+                      </div>
+                    </div>
+                    <div className='w-[399px] h-[90px] flex items-center justify-center gap-6 bg-yellow-300 ' >
+                      <div>
+                        <Image src={Return} />
+                      </div>
+                      <div>
+                        <h5 className='font-poppins text-[16px] text-black leading-[24px]  font-medium' >Return Delivery</h5>
+                        <p className='font-poppins text-[12px] leading-[18px] text-black font-medium ' >Free 30 Days Delivery Returns. Details</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className=' mt-3 flex items-center justify-around' >
-                  <div className='ml-5 flex border border-black w-[160px] ' >
-                    <div className='w-10 border-r border-black  flex items-center justify-center text-[#000000] ' >-</div>
-                    <div className='w-[80px] border-r border-black py-[10px]  px-[30px]' >2</div>
-                    <div className='w-[40px]' ><Button className={`w-full h-full py-[10px] px-[10px] `} text={`+`} ></Button></div>
-                  </div>
-                  <Button className={`py-[10px] px-[50px] `} text={`Buy Now`} />
 
+              </Flex>
+              <SubHeading tittle={`Related Item`} className2={`gap-4`} className1={`py-[150px]`} />
+              <Flex className={`items-center  justify-center gap-5 pb-20 `}  >
 
-                  <div className='rounded-[4px] border border-black ' >
-                    <CiHeart className='text-[24px]' />
-                  </div>
-
-
-                </div>
-                <div className='flex flex-col py-10 items-center justify-center' >
-                  <div className='w-[399px] h-[90px] flex items-center justify-center gap-6 bg-yellow-300 ' >
-                    <div>
-                      <Image src={Delievery} />
-                    </div>
-                    <div>
-                      <h5 className='font-poppins text-[16px] text-black leading-[24px]  font-medium' >Free Delivery</h5>
-                      <p className='font-poppins text-[12px] leading-[18px] text-black font-medium ' >Enter your postal code for Delivery Availability</p>
-                    </div>
-                  </div>
-                  <div className='w-[399px] h-[90px] flex items-center justify-center gap-6 bg-yellow-300 ' >
-                    <div>
-                      <Image src={Return} />
-                    </div>
-                    <div>
-                      <h5 className='font-poppins text-[16px] text-black leading-[24px]  font-medium' >Return Delivery</h5>
-                      <p className='font-poppins text-[12px] leading-[18px] text-black font-medium ' >Free 30 Days Delivery Returns. Details</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </Flex>
-            <SubHeading tittle={`Related Item`} className2={`gap-4`} className1={`py-[150px]`} />
-            <Flex className={`items-center  justify-center gap-5 pb-20 `}  >
-
-              <Card image={Product1} badge={`40%`} tittle={`HAVIT HV-G92 Gamepad`} saleprice={`$120`} regularprice={`$160`} />
-              <Card image={Product1} badge={`40%`} tittle={`HAVIT HV-G92 Gamepad`} saleprice={`$120`} regularprice={`$160`} />
-              <Card image={Product1} badge={`40%`} tittle={`HAVIT HV-G92 Gamepad`} saleprice={`$120`} regularprice={`$160`} />
-              <Card image={Product1} badge={`40%`} tittle={`HAVIT HV-G92 Gamepad`} saleprice={`$120`} regularprice={`$160`} />
-              <Card image={Product1} badge={`40%`} tittle={`HAVIT HV-G92 Gamepad`} saleprice={`$120`} regularprice={`$160`} />
-            </Flex>
-          </Container>
-        </section>
+                <Card image={Product1} badge={`40%`} tittle={`HAVIT HV-G92 Gamepad`} saleprice={`$120`} regularprice={`$160`} />
+                <Card image={Product1} badge={`40%`} tittle={`HAVIT HV-G92 Gamepad`} saleprice={`$120`} regularprice={`$160`} />
+                <Card image={Product1} badge={`40%`} tittle={`HAVIT HV-G92 Gamepad`} saleprice={`$120`} regularprice={`$160`} />
+                <Card image={Product1} badge={`40%`} tittle={`HAVIT HV-G92 Gamepad`} saleprice={`$120`} regularprice={`$160`} />
+                <Card image={Product1} badge={`40%`} tittle={`HAVIT HV-G92 Gamepad`} saleprice={`$120`} regularprice={`$160`} />
+              </Flex>
+            </Container>
+          </section>
       }
 
 

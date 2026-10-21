@@ -9,10 +9,25 @@ import { FaRegHeart } from "react-icons/fa6";
 import { BsCart3 } from "react-icons/bs";
 import { Link, useNavigate } from 'react-router-dom';
 import { FaUser } from "react-icons/fa";
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addbreadcrumb } from '../slices/BreadCrumbSlice';
 import Product1 from '../assets/product1.png'
+import { DecrementaddtoCart, IncrementaddtoCart } from '../slices/addToCartSlice';
 const Navbar = () => {
+  let data=useSelector(state=>(state.cartitem.cartvalue)
+  )
+ 
+  let handleIncrement=(item)=> {
+    console.log(item);
+    dispatch(IncrementaddtoCart(item))
+
+    
+  }
+  let handleDeccrement=(item)=> {
+    console.log("decrement");
+    dispatch(DecrementaddtoCart(item))
+    
+  }
   let [cartdropdown,setCartdropdown]=useState(false)
 
   let navigate = useNavigate()
@@ -57,8 +72,8 @@ const Navbar = () => {
                 <IoMdSearch className='absolute top-[9px] right-[10px]  text-base  ' />
               </div>
               <FaRegHeart className='text-lx' />
-              <div className='cursor-pointer' onClick={handleCart} >
-                <BsCart3 className='text-lx' />
+              <div className='cursor-pointer'  >
+                <BsCart3 onClick={handleCart} className='text-lx' />
 
 
   {
@@ -69,16 +84,20 @@ const Navbar = () => {
         <li>Quantity  : </li>
         <li>Subtotal  : </li>
       </ul>
-      <ul className=' border-b border-black pb-5  flex justify-between  items-center my-6 mx-6  text-black text-xs font-poppins font-normal  ' >
-        <li><  Image  className={`w-[50px] h-[50px] `} src={Product1} /> </li>
-        <li>Product One  : </li>
-        <li className='border border-black p-5 text-center' >
-          <button className='mr-2' >-   </button>   
-          <button> 1  </button>   
-          <button className='ml-2' > + </button>   
+     {
+      data.map(item=>(
+         <ul className=' border-b border-black pb-5  flex justify-between  items-center my-6 mx-6  text-black text-xs font-poppins font-normal  ' >
+        <li><  Image  className={`w-[50px] h-[50px] `} src={item.image} /> </li>
+        <li> {item.title.substring(0,12)}  : </li>
+        <li className='border border-black p-8 text-center' >
+          <button   onClick={()=>handleDeccrement(item)} className='mr-2' >-   </button>   
+          <button>{item.quantity} </button>   
+          <button onClick={()=>handleIncrement(item)}  className='ml-2' > + </button>   
         </li>
-        <li>  60$  : </li>
+        <li> $ {item.price*item.quantity}  </li>
       </ul>
+      ))
+     }
     </div>
   }
 

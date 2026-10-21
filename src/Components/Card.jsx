@@ -6,7 +6,20 @@ import { IoIosHeartEmpty } from "react-icons/io";
 import { LuEye } from "react-icons/lu";
 import { IoMdStar } from "react-icons/io";
 import { Link, useParams } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addtocart } from "../slices/addToCartSlice";
 const Card = ({ id, image, tittle, badge, saleprice, regularprice, className }) => {
+  let dispatch=useDispatch()
+  let handleAddToCart=()=> {
+    console.log("clicked");
+    dispatch(addtocart({
+      title:tittle,
+      image :image,
+      price:saleprice ,
+      quantity : 1,
+    }))
+    
+  }
   let params = useParams()
   console.log(params.id);
 
@@ -36,7 +49,7 @@ const Card = ({ id, image, tittle, badge, saleprice, regularprice, className }) 
             </a>
           </li>
         </div>
-        <div className="cursor-pointer bg-black w-full py-2 absolute -bottom-[40px] group-hover:bottom-0.5 left-0 text-center rounded-b  duration-300" >
+        <div onClick={handleAddToCart}  className="  cursor-pointer bg-black w-full py-2 absolute -bottom-[40px] group-hover:bottom-0.5 left-0 text-center rounded-b  duration-300" >
           <p className="text-white text-[16px] font-poppins font-medium">Add To Cart</p>
         </div>
       </Flex>
