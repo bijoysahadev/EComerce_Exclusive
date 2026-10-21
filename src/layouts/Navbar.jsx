@@ -11,7 +11,10 @@ import { Link, useNavigate } from 'react-router-dom';
 import { FaUser } from "react-icons/fa";
 import { useDispatch } from 'react-redux';
 import { addbreadcrumb } from '../slices/BreadCrumbSlice';
+import Product1 from '../assets/product1.png'
 const Navbar = () => {
+  let [cartdropdown,setCartdropdown]=useState(false)
+
   let navigate = useNavigate()
   let [dropdown, setDropdown] = useState(false)
   let dispatch = useDispatch()
@@ -21,7 +24,8 @@ const Navbar = () => {
   let handleCart = () => {
     console.log("clicked");
     // useNavigate("/Cart")
-    navigate("/Cart")
+    setCartdropdown(!cartdropdown)
+  
 
   }
   let handleBreadcumb = (name) => {
@@ -55,6 +59,29 @@ const Navbar = () => {
               <FaRegHeart className='text-lx' />
               <div className='cursor-pointer' onClick={handleCart} >
                 <BsCart3 className='text-lx' />
+
+
+  {
+    cartdropdown &&  <div  className={` absolute  overflow-y-scroll z-50 top-10 right-8 w-[400px] h-[80vh] bg-white  `} >
+      <ul className=' border-b border-black pb-5 items-center  flex justify-between my-6 mx-6  text-black text-sm font-poppins font-base  ' >
+        <li>Image  : </li>
+        <li>ProductName  : </li>
+        <li>Quantity  : </li>
+        <li>Subtotal  : </li>
+      </ul>
+      <ul className=' border-b border-black pb-5  flex justify-between  items-center my-6 mx-6  text-black text-xs font-poppins font-normal  ' >
+        <li><  Image  className={`w-[50px] h-[50px] `} src={Product1} /> </li>
+        <li>Product One  : </li>
+        <li className='border border-black p-5 text-center' >
+          <button className='mr-2' >-   </button>   
+          <button> 1  </button>   
+          <button className='ml-2' > + </button>   
+        </li>
+        <li>  60$  : </li>
+      </ul>
+    </div>
+  }
+
               </div>
               <div onClick={handleUser} className='w-[25px] h-[25px] rounded-full flex justify-center items-center bg-red p-2 ' >
                 <FaUser className='text-white ' />
@@ -62,11 +89,9 @@ const Navbar = () => {
               {
                 dropdown && <div className=' z-100 w-[200px] py-[20px] absolute top-full right-5 bg-red-500 ' >
                   <ul>
-                    <li>Home</li>
-                    <li>Home</li>
-                    <li>Home</li>
-                    <li>Home</li>
-                    <li>Home</li>
+                    <li>Login</li>
+                    <li>Regstration</li>
+                 
                   </ul>
                 </div>
               }
