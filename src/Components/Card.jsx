@@ -11,7 +11,7 @@ import { addtocart } from "../slices/addToCartSlice";
 const Card = ({ id, image, tittle, badge, saleprice, regularprice, className }) => {
   let dispatch=useDispatch()
   let handleAddToCart=()=> {
-    console.log("clicked");
+   
     dispatch(addtocart({
       title:tittle,
       image :image,
