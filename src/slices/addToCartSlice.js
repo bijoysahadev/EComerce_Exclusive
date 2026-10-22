@@ -39,10 +39,24 @@ data.quantity=data.quantity+1
   })
   
    },
+     Deleteaddtocart:(state,action)=> {
+  console.log(action.payload);
+  state.cartvalue.map((item,index)=>{
+    if(item.title==action.payload.title){
+    state.cartvalue.splice(index,1)
+     
+     
+     
+    }
+  })
+  
+   },
   },
-})
+ 
+  },
+)
 
 
-export const { addtocart,IncrementaddtoCart,DecrementaddtoCart  } = addToCartSlice.actions
+export const { addtocart,IncrementaddtoCart,DecrementaddtoCart,Deleteaddtocart  } = addToCartSlice.actions
 
 export default addToCartSlice.reducer
