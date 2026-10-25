@@ -15,18 +15,28 @@ import Product1 from '../assets/product1.png'
 import { DecrementaddtoCart, Deleteaddtocart, IncrementaddtoCart } from '../slices/addToCartSlice';
 import { IoMdClose } from "react-icons/io";
 import Button from '../Components/Button'
+
+import { addwishlist } from '../slices/wishListSlice'; // Adjust the relative path to your slice if needed
 const Navbar = () => {
 
 
 
   let data = useSelector(state => (state.cartitem.cartvalue)
   )
+  let wishlist = useSelector(state => (state.wishlistslice.value)
+  )
+  // console.log(wishlist.);
+  
+
+
+
+  
   let allTotal = 0
-   data.map(item => {
+    data && data.map(item => {
     allTotal += item.quantity * item.price
 
   })
-  console.log(allTotal);
+  // console.log(allTotal);
 
   let handleIncrement = (item) => {
 
@@ -87,6 +97,7 @@ const Navbar = () => {
                 <IoMdSearch className='absolute top-[9px] right-[10px]  text-base  ' />
               </div>
               <FaRegHeart className='text-lx' />
+              <p>{wishlist.length}</p>
               <div className='cursor-pointer'  >
                 <BsCart3 onClick={handleCart} className='text-lx' />
 

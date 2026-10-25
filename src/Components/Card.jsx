@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "./Image";
 import Product1 from "../assets/product1.png";
 import Flex from "./Flex";
@@ -8,8 +8,20 @@ import { IoMdStar } from "react-icons/io";
 import { Link, useParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addtocart } from "../slices/addToCartSlice";
+import { addwishlist } from "../slices/wishListSlice";
 const Card = ({ id, image, tittle, badge, saleprice, regularprice, className }) => {
   let dispatch=useDispatch()
+  let [heart,setHeart]=useState(false)
+  let handleLove=()=> {
+   
+    setHeart(!heart)
+    
+    dispatch(addwishlist({
+      title:tittle,
+    
+    }))
+    
+  }
   let handleAddToCart=()=> {
    
     dispatch(addtocart({
@@ -21,7 +33,7 @@ const Card = ({ id, image, tittle, badge, saleprice, regularprice, className }) 
  
   }
   let params = useParams()
-  console.log(params.id);
+
 
   return (
 
@@ -38,9 +50,16 @@ const Card = ({ id, image, tittle, badge, saleprice, regularprice, className }) 
 
           <li className=" absolute top-5 right-5 flex items-center justify-center list-none bg-[#FFFFFF]  text-black w-[34px] h-[34px] rounded-full text-base">
             {" "}
-            <a href="#">
+            <a onClick={handleLove}  href="#">
               {" "}
-              <IoIosHeartEmpty />
+
+
+
+{
+  heart ?  <IoIosHeartEmpty className="text-red" />:<IoIosHeartEmpty className="text-black" />
+}
+
+  
             </a>{" "}
           </li>
           <li className=" absolute top-15 right-5 flex items-center justify-center list-none bg-[#ffff] text-black w-[34px] h-[34px] text-base rounded-full">

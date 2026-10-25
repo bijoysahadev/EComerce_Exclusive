@@ -1,7 +1,7 @@
 import React from 'react'
 import { IoIosArrowForward } from "react-icons/io";
 const CategoryList = ({type,text,className,classNameForIcons}) => {
-    console.log({type,});
+    // console.log({type,});
     
   return (
     
