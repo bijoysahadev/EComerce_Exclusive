@@ -18,7 +18,7 @@ const Card = ({ id, image, tittle, badge, saleprice, regularprice, className }) 
       price:saleprice ,
       quantity : 1,
     }))
-    
+ 
   }
   let params = useParams()
   console.log(params.id);

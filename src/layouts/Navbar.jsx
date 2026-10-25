@@ -22,7 +22,7 @@ const Navbar = () => {
   let data = useSelector(state => (state.cartitem.cartvalue)
   )
   let allTotal = 0
-  data.map(item => {
+   data.map(item => {
     allTotal += item.quantity * item.price
 
   })
