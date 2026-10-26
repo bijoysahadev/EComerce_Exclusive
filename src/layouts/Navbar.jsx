@@ -15,12 +15,13 @@ import Product1 from '../assets/product1.png'
 import { DecrementaddtoCart, Deleteaddtocart, IncrementaddtoCart } from '../slices/addToCartSlice';
 import { IoMdClose } from "react-icons/io";
 import Button from '../Components/Button'
-
+import ProductONe from '../assets/product1.png'
+ 
 import { addwishlist } from '../slices/wishListSlice'; // Adjust the relative path to your slice if needed
 const Navbar = () => {
 
 
-
+let [input,setInput]=useState("")
   let data = useSelector(state => (state.cartitem.cartvalue)
   )
   let wishlist = useSelector(state => (state.wishlistslice.value)
@@ -28,6 +29,17 @@ const Navbar = () => {
   // console.log(wishlist.);
   
 
+  // 
+ let [Apidata, SetApidata] = useState([])
+ let [Search, SetSearch] = useState([])
+ useEffect(() => {
+    fetch("https://dummyjson.com/products")
+      .then((res) => res.json())
+      .then((data) => SetApidata(data.products)
+      )
+  }, [])
+
+  // 
 
 
   
@@ -38,6 +50,15 @@ const Navbar = () => {
   })
   // console.log(allTotal);
 
+let handleInput=(e)=> {
+  setInput(e.target.value);
+  
+ let data = Apidata.filter(item=>item.title.toLowerCase().includes(e.target.value.toLowerCase()))
+SetSearch(data);
+  
+}
+
+    
   let handleIncrement = (item) => {
 
     dispatch(IncrementaddtoCart(item))
@@ -93,11 +114,30 @@ const Navbar = () => {
           <div className='w-4/12  pl-10 relative'>
             <Flex className={`items-center justify-between `}>
               <div className='relative w-[243px] bg-white'>
-                <input className='py-1 pl-4 pr-7 w-full placeholder:text-[12px] font-poppins  font-regular' type="text" placeholder='What are you looking for?  ' />
+                <input onChange={handleInput} className='py-1 pl-4 pr-7 w-full placeholder:text-[12px] font-poppins  font-regular' type="text" placeholder='What are you looking for?  ' />
                 <IoMdSearch className='absolute top-[9px] right-[10px]  text-base  ' />
+                {/* search bar */}
+                  {
+             input.length >0 &&
+                    Search.map(item=> (
+                       <div className=' z-50 w-full border border-black top-8 h-[300px] py-6 px-5 absolute rounded-md bg-white' >
+                   <Flex className={` justify-between itens-center gap-2`} >
+                 <Flex className={`gap-4 my-4  `} >
+                      <Image className={`w-7`} src={item.thumbnail} />
+                    <p className='text-sm text-red' >{item.title}</p>
+                 </Flex  >
+                    <p>X</p>
+                   </Flex>
+                   </div>
+                    ))
+                  }
+                   {/* search bar */}
               </div>
-              <FaRegHeart className='text-lx' />
-              <p>{wishlist.length}</p>
+           
+         <div className='relative  bg-red ' >
+               <FaRegHeart className='text-lx ' />
+              <p className='w-5 h-5 rounded-full -translate--1/2 bg-blue-500 absolute top-0 -right-2' >{wishlist.length}</p>
+         </div>
               <div className='cursor-pointer'  >
                 <BsCart3 onClick={handleCart} className='text-lx' />
 
